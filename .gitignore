@@ -13,3 +13,7 @@ build
 # hidden files created by Windows
 Thumbs.db
 desktop.ini
+
+#programme folder/zip
+arduino-1.6.4-windows/
+arduino-1.6.4-windows.zip
