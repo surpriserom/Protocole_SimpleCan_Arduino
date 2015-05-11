@@ -1,0 +1,29 @@
+ proposition de prototypes de fonction pour API SimpleCAN
+
+Subject: proposition de prototypes de fonction pour API SimpleCAN
+
+Bonjour,
+
+Pour transférer des variables réseau, pourrait-on imaginer de faire juste deux méthodes de style suivant :
+
+SimpleCAN.setVariable(varId, newValue); // à la place de l'ancien "update()" et
+lastValue = SimpleCAN.getVariable(varId);
+
+ou
+
+setNetworkVariable();
+getNetworkVariable();
+
+puis il manque une méthode pour s'abonner aux changments de certaines variables, seulement ces variables seraient
+ mis à jour, par exemple :
+
+keepUpdated(varId);
+
+
+Si non, je viens de comprendre, en travaillant avec les étudiants de l'ENSTA, que la méthode
+"setFilterOnID" est en fait celle qui gère l'abonnement à des variables. Mais elle à une liste de paramètres 
+beaucoup trop compliquée pour une bibliothèque Arduino, et un nom qui décrit plus son implémentation que son 
+utilisation.
+
+A bientôt,
+   Bernt
