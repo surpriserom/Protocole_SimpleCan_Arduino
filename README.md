@@ -5,5 +5,5 @@ L'approche devra être validée, au travers d'une application simple de visualis
 un destiné au décodage de données propriétaires SeaTalk (Raymarine), deux destinés à du traitement de données NMEA (issues d'un GPS et d'une centrale Tactick) et le dernier portant une centrale inertielle.
 
 ###based on splashelec project 
-see [wiki](http://wiki.splashelec.com/) or [github](https://github.com/splashelec/splashelec) 
+see splashelec [wiki](http://wiki.splashelec.com/) or [github](https://github.com/splashelec/splashelec) 
 
