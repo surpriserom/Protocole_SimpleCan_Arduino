@@ -1,0 +1,7 @@
+
+
+- Le cable CAN alimente il les autre noeud du réseaux?
+Le bus CAN sur le schema electrique correspond au connecteur 104, ce connecteur est composé de
+2 GND, le CANL et CANH, et le port VIN de la carte arduino, il ne permette pas d'alimenter la carte.
+
+- 
