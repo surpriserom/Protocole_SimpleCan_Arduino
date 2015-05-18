@@ -1,3 +1,8 @@
+/*------------------------------------------------------+
+|            Code for testing GPS receiver              |
+|  Receiver type Cirus CN-06                            |
+| Gps module  ublox Neo-6m-0-001                        |
++-------------------------------------------------------*/
 #include <SoftwareSerial.h>
 
 SoftwareSerial gpsSerial(10, 11); // RX, TX (TX not used)
@@ -13,8 +18,9 @@ void setup()
 
 void loop()
 {
+  static bool first = true;
   static int i = 0;
-  if (gpsSerial.available())
+  if (gpsSerial.available()>0)
   {
     char ch = gpsSerial.read();
     if (ch != '\n' && i < sentenceSize)
@@ -29,6 +35,12 @@ void loop()
      displayGPS();
     }
   }
+  if(first)
+  {
+    Serial.println("Gps Test started\n"); 
+    first = false;
+  }
+  
 }
 
 void displayGPS()
@@ -37,7 +49,10 @@ void displayGPS()
   getField(field, 0);
   if (strcmp(field, "$GPRMC") == 0)
   {
-    Serial.print("Lat: ");
+    Serial.print("Nav:");
+    getField(field, 2);  // number
+    Serial.print((strcmp(field, "A") == 0? "Valide" : "Erronne"));
+    Serial.print(" | Lat: ");
     getField(field, 3);  // number
     Serial.print(field);
     getField(field, 4); // N/S
@@ -48,6 +63,24 @@ void displayGPS()
     Serial.print(field);
     getField(field, 6);  // E/W
     Serial.println(field);
+  }
+  else
+  {
+    if (strcmp(field, "$GPGGA") == 0)
+    {
+      getField(field, 1);//h
+      Serial.print(field[0]);
+      Serial.print(field[1]);
+      Serial.print("h ");
+      getField(field, 1);  // mn
+      Serial.print(field[2]);
+      Serial.print(field[3]);
+      Serial.print("mn ");
+      getField(field, 1);  // s
+      Serial.print(field[4]);
+      Serial.print(field[5]);
+      Serial.println("s ");
+    }
   }
 }
 
@@ -72,3 +105,5 @@ void getField(char* buffer, int index)
   }
   buffer[fieldPos] = '\0';
 }
+
+
