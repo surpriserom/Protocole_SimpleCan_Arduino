@@ -72,11 +72,11 @@ void displayGPS()
       Serial.print(field[0]);
       Serial.print(field[1]);
       Serial.print("h ");
-      getField(field, 1);  // mn
+      //getField(field, 1);  // mn
       Serial.print(field[2]);
       Serial.print(field[3]);
       Serial.print("mn ");
-      getField(field, 1);  // s
+      //getField(field, 1);  // s
       Serial.print(field[4]);
       Serial.print(field[5]);
       Serial.println("s ");
