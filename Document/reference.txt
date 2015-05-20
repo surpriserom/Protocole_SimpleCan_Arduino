@@ -4,3 +4,8 @@ http://www.technologuepro.com/cours-systemes-embarques/cours-systemes-embarques-
 
 arduino leonardo
 http://www.arduino.cc/en/Main/ArduinoBoardLeonardo
+
+nema gps
+http://blog.iteadstudio.com/play-arduino-with-global-positioning-system-gps/
+nema presentation
+http://www.prism-astro.com/fr/aide/Menu-Telescope/TELESCOPE-GPS/renseignements.htm
