@@ -5,6 +5,7 @@
 .buildpath
 .project
 .settings
+*.odt#
 *.tmproj
 build
 .idea
