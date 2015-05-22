@@ -34,6 +34,9 @@ typedef struct
 class SimpleCANClass
 {
 	public:
+		//XXX tenter de mettre ces variables en private (au moins VarArray)
+		bool leader;
+		NetworkVariable VarArray[N];
 		//ISR
 		void matchAndRetrieve();
 		//Initialisation function with node ID
@@ -48,17 +51,12 @@ class SimpleCANClass
 		void setVariable(uint32_t id,uint64_t val);
 		//Get the variable
 		uint64_t getVariable(uint32_t id);		
-		
-		
-		void activateInterrupt(void);
 
 		/**Debugging*/
 		//Automatically send the message into CAN frames. Split is made if necessary
 		void printString2Can(char []);
 
 	private:
-		bool leader;
-		NetworkVariable VarArray[N];
 	
 		
 };

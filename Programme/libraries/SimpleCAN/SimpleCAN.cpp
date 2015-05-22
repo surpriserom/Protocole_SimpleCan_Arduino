@@ -178,9 +178,3 @@ uint64_t SimpleCANClass::getVariable(uint32_t id){
 	}
 	
 }
-
-
-//Activate Interrupt when receive a message on RX0 or RX1
-void CANclass::activateInterrupt(void){
-	mcp2515_write_register(CANINTE, 0x03);fff
-}
