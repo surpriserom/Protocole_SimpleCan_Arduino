@@ -1,3 +1,6 @@
+#include <SimpleCAN.h>
+#include <sailingSpecifics.h>
+#include <Can.h>
 
 /*
  * Copyright (C) 2013 Kevin Bruget
@@ -36,12 +39,6 @@ connection an provisions for electrical isolation, see:
 http://www.kreatives-chaos.com/artikel/can-debugger
 
 */
-
-
-
-
-#include <Can.h>
-#include <SimpleCAN.h>
 
 SimpleCANClass can;
 

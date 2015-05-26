@@ -34,9 +34,6 @@ typedef struct
 class SimpleCANClass
 {
 	public:
-		//XXX tenter de mettre ces variables en private (au moins VarArray)
-		bool leader;
-		NetworkVariable VarArray[N];
 		//ISR
 		void matchAndRetrieve();
 		//Initialisation function with node ID
@@ -51,12 +48,33 @@ class SimpleCANClass
 		void setVariable(uint32_t id,uint64_t val);
 		//Get the variable
 		uint64_t getVariable(uint32_t id);		
-
+		
+		
+		void activateInterrupt(void);
+		void resetFiltersAndMasks(void);
+		
+		/**mcp2515_get_message**/
+		uint8_t mcp2515_get_message(can_t *);
+		/**mcp2515**/
+		void mcp2515_write_register(uint8_t, uint8_t);
+		uint8_t mcp2515_read_register(uint8_t);
+		void mcp2515_bit_modify(uint8_t, uint8_t, uint8_t);
+		uint8_t mcp2515_read_status(uint8_t);
+		bool mcp2515_init(uint8_t);
+		
+		/**USB**/
+		bool usbcan_decode_message(char *str, uint8_t length);
+		char usbcan_decode_command(char *str, uint8_t length);
+		uint8_t char_to_byte(char *s);
+		uint8_t hex_to_byte(char *s);
+	
 		/**Debugging*/
 		//Automatically send the message into CAN frames. Split is made if necessary
 		void printString2Can(char []);
 
 	private:
+		bool leader;
+		NetworkVariable VarArray[N];
 	
 		
 };
