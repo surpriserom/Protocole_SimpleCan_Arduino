@@ -381,6 +381,25 @@ bool SimpleCANClass::usbcan_decode_message(char *str, uint8_t length)
 		return false;
 }
 
+/*************************USB Functions for bootloader****************************/
+uint8_t SimpleCANClass::char_to_byte(char *s)
+{
+	uint8_t t = *s;
+	
+	if (t >= 'a')
+		t = t - 'a' + 10;
+	else if (t >= 'A')
+		t = t - 'A' + 10;
+	else
+		t = t - '0';
+	
+	return t;
+}
+uint8_t SimpleCANClass::hex_to_byte(char *s)
+{
+	return (char_to_byte(s) << 4) | char_to_byte(s + 1);
+}
+
 // ----------------------------------------------------------------------------
 char SimpleCANClass::usbcan_decode_command(char *str, uint8_t length)
 {
@@ -462,3 +481,381 @@ uint8_t SimpleCANClass::mcp2515_read_status(uint8_t type)
 
 	return data;
 }
+
+void SimpleCANClass::setMaskOrFilter(uint8_t mask, uint8_t b0, uint8_t b1, uint8_t b2, uint8_t b3) {
+	// change to configuration mode
+	mcp2515_bit_modify(CANCTRL, 0xe0, (1<<REQOP2));
+	while ((mcp2515_read_register(CANSTAT) & 0xe0) != (1<<REQOP2))
+		;
+	mcp2515_write_register(mask, b0);
+	mcp2515_write_register(mask+1, b1);
+	mcp2515_write_register(mask+2, b2);
+	mcp2515_write_register(mask+3, b3);
+	mcp2515_set_mode(NORMAL_MODE);
+}
+
+// ----------------------------------------------------------------------------
+uint8_t SimpleCANClass::spi_putc(uint8_t data)
+{
+	// put byte in send-buffer
+	SPDR = data;
+
+	// wait until byte was send
+	while( !( SPSR & (1<<SPIF) ) )
+		;
+
+	return SPDR;
+
+}
+
+/****************************mcp2515_read_id function to read an ID***************************/
+#if	SUPPORT_EXTENDED_CANID
+uint8_t SimpleCANClass::mcp2515_read_id(uint32_t *id)
+{
+	uint8_t first;
+	uint8_t tmp;
+
+	first = spi_putc(0xff);
+	tmp   = spi_putc(0xff);
+
+	if (tmp & (1 << IDE)) {
+		spi_start(0xff);
+	
+		*((uint16_t *) id + 1)  = (uint16_t) first << 5;
+		*((uint8_t *)  id + 1)  = spi_wait();
+		spi_start(0xff);
+	
+		*((uint8_t *)  id + 2) |= (tmp >> 3) & 0x1C;
+		*((uint8_t *)  id + 2) |=  tmp & 0x03;
+	
+		*((uint8_t *)  id)      = spi_wait();
+	
+		return TRUE;
+	}
+	else {
+		spi_start(0xff);
+	
+		*((uint8_t *)  id + 3) = 0;
+		*((uint8_t *)  id + 2) = 0;
+	
+		*((uint16_t *) id) = (uint16_t) first << 3;
+	
+		spi_wait();
+		spi_start(0xff);
+	
+		*((uint8_t *) id) |= tmp >> 5;
+	
+		spi_wait();
+	
+		return FALSE;
+	}
+}
+
+#else
+
+uint8_t SimpleCANClass::mcp2515_read_id(uint16_t *id)
+{
+	uint8_t first;
+	uint8_t tmp;
+
+	first = spi_putc(0xff);
+	tmp   = spi_putc(0xff);
+
+	if (tmp & (1 << IDE)) {
+		spi_putc(0xff);
+		spi_putc(0xff);
+	
+		return 1;			// extended-frame
+	}
+	else {
+		spi_start(0xff);
+	
+		*id = (uint16_t) first << 3;
+	
+		spi_wait();
+		spi_start(0xff);
+	
+		*((uint8_t *) id) |= tmp >> 5;
+	
+		spi_wait();
+	
+		if (tmp & (1 << SRR))
+			return 2;		// RTR-frame
+		else
+			return 0;		// normal-frame
+	}
+}
+#endif	// SUPPORT_EXTENDED_CANID
+
+/****************************END mcp2515_read_id***************************/
+
+/****************************mcp2515_send_message function to send a CAN msg***************************/
+uint8_t SimpleCANClass::mcp2515_send_message(const can_t *msg)
+{
+	// Read status of the MCP2515
+	uint8_t status = mcp2515_read_status(SPI_READ_STATUS);
+
+	/* Statusbyte:
+	 *
+	 * Bit	Function
+	 *  2	TXB0CNTRL.TXREQ
+	 *  4	TXB1CNTRL.TXREQ
+	 *  6	TXB2CNTRL.TXREQ
+	 */
+	uint8_t address;
+	if (_bit_is_clear(status, 2)) {
+		address = 0x00;
+	}
+	else if (_bit_is_clear(status, 4)) {
+		address = 0x02;
+	} 
+	else if (_bit_is_clear(status, 6)) {
+		address = 0x04;
+	}
+	else {
+		// All buffers are occupied,
+		// Message can not be sent
+		return 0;
+	}
+
+	RESET(MCP2515_CS);
+	spi_putc(SPI_WRITE_TX | address);
+	#if SUPPORT_EXTENDED_CANID
+		mcp2515_write_id(&msg->id, msg->flags.extended);
+	#else
+		mcp2515_write_id(&msg->id);
+	#endif
+	uint8_t length = msg->length & 0x0f;
+
+	// If the message contains a "Remote Transmit Request"?
+	if (msg->flags.rtr)
+	{
+		// An RTR msg indeed has a length,
+		// But contains no data
+	
+		// Setting the message length + RTR
+		spi_putc((1<<RTR) | length);
+	}
+	else
+	{
+		// Setting the message length
+		spi_putc(length);
+	
+		// Data
+		for (uint8_t i=0;i<length;i++) {
+			spi_putc(msg->data[i]);
+		}
+	}
+	SET(MCP2515_CS);
+
+	_delay_us(1);
+
+	//Send CAN message
+	//the last three bits in the RTS command specify which
+	//Buffer to be sent.
+	RESET(MCP2515_CS);
+	address = (address == 0) ? 1 : address;
+	spi_putc(SPI_RTS | address);
+	SET(MCP2515_CS);
+
+	CAN_INDICATE_TX_TRAFFIC_FUNCTION;
+
+	return address;
+}
+
+/****************************END mcp2515_send_message***************************/
+/*******************************mcp2515_set_mode function to set CAN mode******************************/
+// ----------------------------------------------------------------------------
+void SimpleCANClass::mcp2515_set_mode(can_mode_t mode)
+{
+	uint8_t reg = 0;
+
+	if (mode == LISTEN_ONLY_MODE) {
+		reg = (1<<REQOP1)|(1<<REQOP0);
+	}
+	else if (mode == LOOPBACK_MODE) {
+		reg = (1<<REQOP1);
+	}
+	else if (mode == SLEEP_MODE) {
+		reg = (1<<REQOP0);
+	}
+	
+	// set the new mode
+	mcp2515_bit_modify(CANCTRL, (1<<REQOP2)|(1<<REQOP1)|(1<<REQOP0), reg);
+	while ((mcp2515_read_register(CANSTAT) & 0xe0) != reg) {
+		// wait for the new mode to become active
+	}
+}
+
+/*******************************END mcp2515_set_mode******************************/
+// ----------------------------------------------------------------------------
+#ifdef USE_SOFTWARE_SPI
+	static uint8_t usi_interface_spi_temp;
+
+	void SimpleCANClass::spi_start(uint8_t data) {
+		usi_interface_spi_temp = spi_putc(data);
+	}
+
+	uint8_t SimpleCANClass::spi_wait(void) {
+		return usi_interface_spi_temp;
+	}
+#else
+	void SimpleCANClass::spi_start(uint8_t data) {
+		SPDR = data;
+	}
+
+	uint8_t SimpleCANClass::spi_wait(void) {
+		// Wait until the previous values are ​​written/transfer complete
+		while(!(SPSR & (1<<SPIF)))
+			;
+
+		return SPDR;
+	}
+#endif
+/*******************************BEG mcp2515_write_id******************************/
+// ----------------------------------------------------------------------------
+#if SUPPORT_EXTENDED_CANID
+	void SimpleCANClass::mcp2515_write_id(const uint32_t *id, uint8_t extended)
+	{
+		uint8_t tmp;
+
+		if (extended) {
+			spi_start(*((uint16_t *) id + 1) >> 5);
+	
+			// Calculate next value
+			tmp  = (*((uint8_t *) id + 2) << 3) & 0xe0;
+			tmp |= (1 << IDE);
+			tmp |= (*((uint8_t *) id + 2)) & 0x03;
+	
+			// Wait until the previous values are ​​written
+			spi_wait();
+	
+			// Write remaining values
+			spi_putc(tmp);
+			spi_putc(*((uint8_t *) id + 1));
+			spi_putc(*((uint8_t *) id));
+		}
+		else {
+			spi_start(*((uint16_t *) id) >> 3);
+	
+			// Calculate next values
+			tmp = *((uint8_t *) id) << 5;
+			spi_wait();
+	
+			spi_putc(tmp);
+			spi_putc(0);
+			spi_putc(0);
+		}
+	}
+#else
+	void SimpleCANClass::mcp2515_write_id(const uint16_t *id)
+	{
+		uint8_t tmp;
+
+		spi_start(*id >> 3);
+		tmp = *((uint8_t *) id) << 5;
+		spi_wait();
+
+		spi_putc(tmp);
+		spi_putc(0);
+		spi_putc(0);
+	}
+#endif	// USE_EXTENDED_CANID
+/*******************************END mcp2515_write_id******************************/
+/*
+// -------------------------------------------------------------------------
+bool SimpleCANClass::mcp2515_init(uint8_t bitrate)
+{
+	if (bitrate >= 8)
+		return false;
+
+	SET(MCP2515_CS);
+	SET_OUTPUT(MCP2515_CS);
+
+	// Enable pins for the SPI interface
+	RESET(P_SCK);
+	RESET(P_MOSI);
+	RESET(P_MISO);
+
+	SET_OUTPUT(P_SCK);
+	SET_OUTPUT(P_MOSI);
+	SET_INPUT(P_MISO);
+
+	// Set SPI setting
+	mcp2515_spi_init();
+
+	// MCP2515 reset by software reset 
+	// then he is automatically in the configuration mode
+	RESET(MCP2515_CS);
+	spi_putc(SPI_RESET);
+
+	_delay_ms(1);
+
+	SET(MCP2515_CS);
+
+	// Wait a bit until the MCP2515 has restarted
+	_delay_ms(10);
+
+	// CNF1 .. 3 register load (bit timing)
+	RESET(MCP2515_CS);
+	spi_putc(SPI_WRITE);
+	spi_putc(CNF3);
+	for (uint8_t i=0; i<3 ;i++ ) {
+		spi_putc(pgm_read_byte(&_mcp2515_cnf[bitrate][i]));
+	}
+	// Enable / Disable the interrupts
+	spi_putc(MCP2515_INTERRUPTS);
+	SET(MCP2515_CS);
+
+	// TXnRTS bits switch as inputs
+	mcp2515_write_register(TXRTSCTRL, 0);
+
+	#if defined(MCP2515_INT)
+		SET_INPUT(MCP2515_INT);
+		SET(MCP2515_INT);
+	#endif
+
+	#ifdef RXnBF_FUNKTION
+		SET_INPUT(MCP2515_RX0BF);
+		SET_INPUT(MCP2515_RX1BF);
+	
+		SET(MCP2515_RX0BF);
+		SET(MCP2515_RX1BF);
+	
+		// Enable pin functions for RX0BF and RX1BF
+		mcp2515_write_register(BFPCTRL, (1<<B0BFE)|(1<<B1BFE)|(1<<B0BFM)|(1<<B1BFM));
+	#else
+		#ifdef MCP2515_TRANSCEIVER_SLEEP
+			// activate the pin RX1BF as GPIO which is connected 
+			// to RS of MCP2551 and set it to 0
+			mcp2515_write_register(BFPCTRL, (1<<B1BFE));
+		#else
+			// Disabling RXnBF Pins (High Impedance State)
+			mcp2515_write_register(BFPCTRL, 0);
+		#endif
+	#endif
+
+	//Testing whether that can be accessed on the registers described
+	bool error = false;
+
+	if (mcp2515_read_register(CNF2) != pgm_read_byte(&_mcp2515_cnf[bitrate][1])) {
+		error = true;
+	}
+
+	// Device back into normal mode enable 
+	// and enable / disable the Clkout pins
+	mcp2515_write_register(CANCTRL, CLKOUT_PRESCALER_);
+
+	if (error) {
+		return false;
+	}
+	else
+	{
+		while ((mcp2515_read_register(CANSTAT) & 0xe0) != 0) {
+			// Wait until mode switch to Normal
+		}
+	
+		return true;
+	}
+}
+/****************************END mcp2515**************************/

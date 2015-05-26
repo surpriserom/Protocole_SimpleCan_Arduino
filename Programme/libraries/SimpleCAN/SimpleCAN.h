@@ -49,10 +49,18 @@ class SimpleCANClass
 		//Get the variable
 		uint64_t getVariable(uint32_t id);		
 		
-		
-		void activateInterrupt(void);
-		void resetFiltersAndMasks(void);
-		
+		/**mcp2515_write_id**/
+		static void spi_start(uint8_t); 
+		static uint8_t spi_wait(void);
+		void mcp2515_write_id(const uint32_t *, uint8_t);
+		void mcp2515_write_id(const uint16_t *);
+		/**mcp2515_set_mode**/
+		void mcp2515_set_mode(can_mode_t);
+		/**mcp2515_send_message**/
+		uint8_t mcp2515_send_message(const can_t *);
+		/**mcp2515_read_id**/
+		uint8_t mcp2515_read_id(uint32_t *);
+		uint8_t mcp2515_read_id(uint16_t *);
 		/**mcp2515_get_message**/
 		uint8_t mcp2515_get_message(can_t *);
 		/**mcp2515**/
@@ -61,6 +69,13 @@ class SimpleCANClass
 		void mcp2515_bit_modify(uint8_t, uint8_t, uint8_t);
 		uint8_t mcp2515_read_status(uint8_t);
 		bool mcp2515_init(uint8_t);
+		uint8_t spi_putc(uint8_t );
+		
+		/**Misc**/
+		void activateInterrupt(void);
+		void resetFiltersAndMasks(void);
+		void setMaskOrFilter(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t);
+		void clearFlags(void);
 		
 		/**USB**/
 		bool usbcan_decode_message(char *str, uint8_t length);
