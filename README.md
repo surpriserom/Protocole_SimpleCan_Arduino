@@ -7,3 +7,6 @@ un destiné au décodage de données propriétaires SeaTalk (Raymarine), deux de
 ###based on splashelec project 
 see splashelec [wiki](http://wiki.splashelec.com/) or [github](https://github.com/splashelec/splashelec) 
 
+#### github can source 
+from [McNeight/CAN-Library](https://github.com/McNeight/CAN-Library) for Multiplatform CAN library for Arduino supporting the MCP2515, SAM3X, and K2X controllers 
+and [dergraaf/avr-can-lib](https://github.com/dergraaf/avr-can-lib) for Universelle CAN Blibiothek (avr-can-lib)
