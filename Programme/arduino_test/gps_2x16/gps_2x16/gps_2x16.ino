@@ -26,7 +26,7 @@
 // initialize the library with the numbers of the interface pins
 LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
 
-SoftwareSerial gpsSerial(10, 11); // RX, TX (TX not used)
+SoftwareSerial gpsSerial(9, 10); // RX, TX (TX not used)
 const int sentenceSize = 80;
 const int backlight = 7;
 
@@ -44,6 +44,7 @@ void setup() {
   digitalWrite(backlight, LOW);
   
   gpsSerial.begin(9600);
+  //Serial.begin(9600);
 }
 
 void loop() 
@@ -61,6 +62,7 @@ void loop()
     {
      sentence[i] = '\0';
      i = 0;
+     //Serial.println(sentence);
      displayGPS();
     }
   }
@@ -68,7 +70,7 @@ void loop()
 }
 
 
-/**
+/*
 * $GPRMC,225446,A,4916.45,N,12311.12,W,000.5,054.7,191194,020.3,E*68
 field Name -> 0 -> $GPRMC
 field Heure Fixe -> 1 -> 225446 -> 22H 54mn 46s
@@ -85,49 +87,79 @@ field cheksum -> 11 -> E*68 -> cheksum 68
 */
 void displayGPS()
 {
-  char field[20][20];
-  getFieldName(field[0]);
-  if (strcmp(field[0], "$GPRMC") == 0)
+  char field[20];
+  boolean signal = false;
+  static boolean prev= false;
+   getField(field, 0);
+  if (strcmp(field, "$GPRMC") == 0)
   {
-    parseField(field);
-    (strcmp(field[2], "A") == 0?  HIGH : LOW));
+    //test if gps signal is good
+	getField(field, 2);
+    signal = (strcmp(field, "A") == 0?  true : false);
     
-    //prmeiere ligne
-    lcd.setCursor(0, 0);
-    lcd.print();
-    Serial.print(field);
-    getField(field, 4); // N/S
-    Serial.print(field);
-    lcd.setCursor(0, 1);
-    lcd.print();
+    if(prev != signal)
+    {
+      lcd.clear();  
+    }
+    prev = signal;
+    
+    if(signal)
+    {
+      digitalWrite(backlight, HIGH);
+      //premeiere ligne
+      lcd.setCursor(0, 0);
+	  getField(field, 3);
+	  lcd.print(field[0]);
+	  lcd.print(field[1]);
+	  lcd.print("  ");
+	  lcd.print(field +2);
+	  lcd.print("mn ");
+	  getField(field, 4);
+	  lcd.print(field);
+      //seconde ligne
+      lcd.setCursor(0, 1);
+	  getField(field, 5);
+	  lcd.print(field[0]);
+	  lcd.print(field[1]);
+	  lcd.print(field[2]);
+	  lcd.print(" ");
+	  lcd.print(field +3);
+	  lcd.print("mn ");
+	  getField(field, 6);
+	  lcd.print(field);
+     }
+     else
+     {
+       lcd.setCursor(0, 0);
+       lcd.print("signal GPS non");
+       lcd.setCursor(0, 1);
+       lcd.print("valide");
+       digitalWrite(backlight, LOW);
+       delay(100);
+       digitalWrite(backlight, HIGH);
+       delay(100);
+     }
   }
 }
 
-void parseField(char** buffer)
+void getField(char* buffer, int index)
 {
   int sentencePos = 0;
   int fieldPos = 0;
+  int commaCount = 0;
   while (sentencePos < sentenceSize)
   {
-    buffer[sentencePos][fieldPos] = sentence[fieldPos];
-    if (sentence[fieldPos] == ',')
+    if (sentence[sentencePos] == ',')
     {
-      buffer[sentencePos][fieldPos] = '\0';
+      commaCount ++;
       sentencePos ++;
     }
-    fieldPos ++;
-  }
-}
-
-void getFieldName(char* buffer)
-{
-  int fieldPos = 0;
-  boolean endField = false;
-  while (sentencePos < sentenceSize || !endField)
-  {
-    endField = (sentence[fieldPos] == ',');
-    buffer[fieldPos] = sentence[fieldPos];
-    fieldPos ++;
+    if (commaCount == index)
+    {
+      buffer[fieldPos] = sentence[sentencePos];
+      fieldPos ++;
+    }
+    sentencePos ++;
   }
   buffer[fieldPos] = '\0';
 }
