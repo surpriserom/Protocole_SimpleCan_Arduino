@@ -1,24 +1,53 @@
 /*
+*  Serial: 0 (RX) and 1 (TX). 
+* Used to receive (RX) and transmit (TX) TTL serial data using the ATmega32U4 hardware serial capability.
+* Note that on the Leonardo, the Serial class refers to USB (CDC) communication; 
+* for TTL serial on pins 0 and 1, use the Serial1 class. 
+*
 * wirred pin D0 -> rx
 * not pluged pin D1 -> TX
 */
-#include <SoftwareSerial.h>
 
-SoftwareSerial nemaSerial(9, 10);
+#include <Can.h>
 
 const int sentenceSize = 80;
 char sentence[sentenceSize];
 
+const uint8_t can_filter[] = 
+{
+	// Group 0
+	MCP2515_FILTER(0),				// Filter 0
+	MCP2515_FILTER(0),				// Filter 1
+	
+	// Group 1
+	MCP2515_FILTER_EXTENDED(0),		// Filter 2
+	MCP2515_FILTER_EXTENDED(0),		// Filter 3
+	MCP2515_FILTER_EXTENDED(0),		// Filter 4
+	MCP2515_FILTER_EXTENDED(0),		// Filter 5
+	
+	MCP2515_FILTER(0),				// Mask 0 (for group 0)
+	MCP2515_FILTER_EXTENDED(0),		// Mask 1 (for group 1)
+};
+
 void setup() {
-  nemaSerial.begin(9600);
-  Serial.begin(9600);
+  Serial1.begin(9600);
+      while (!Serial1) {
+        ; // wait for Serial1 port to connect. Needed for Leonardo only
+      }
+      
+      // Initialize MCP2515
+      CAN.mcp2515_init(BITRATE_250_KBPS);
+      CAN.activateInterrupt();
+      // Load filters and masks
+      //can.mcp2515_static_filter(can_filter);
+      CAN.resetFiltersAndMasks();
 }
 
 void loop() {
   static int i = 0;
-  if (nemaSerial.available()>0)
+  if (Serial1.available()>0)
   {
-    char ch = nemaSerial.read();
+    char ch = Serial1.read();
     if (ch != '\n' && i < sentenceSize)
     {
       sentence[i] = ch;
@@ -51,6 +80,7 @@ field cheksum -> 11 -> E*68 -> cheksum 68
 void displayGPS()
 {
   char field[20];
+  char buff[50];
   boolean signal = false;
   
   getField(field, 0);
@@ -65,29 +95,31 @@ void displayGPS()
     {
       //premeiere ligne
 	  getField(field, 3);
-	  Serial.print("lat:  ");
-	  Serial.print(field[0]);
-	  Serial.print(field[1]);
-	  Serial.print("deg  ");
-	  Serial.print(field +2);
-	  Serial.print("min ");
+	  strcat(buff, "lat:  ");
+	   strcat(buff, field[0]+"");
+	   strcat(buff, field[1]+"");
+	   strcat(buff, "deg  ");
+	   strcat(buff, field +2);
+	   strcat(buff, "min ");
 	  getField(field, 4);
-	  Serial.println(field);
+	   strcat(buff, field);
+	  Serial1.println(buff);
       //seconde ligne
 	  getField(field, 5);
-	  Serial.print("long: ");
-	  Serial.print(field[0]);
-	  Serial.print(field[1]);
-	  Serial.print(field[2]);
-	  Serial.print("deg ");
-	  Serial.print(field +3);
-	  Serial.print("min ");
+	  strcat(buff, "long: ");
+	  strcat(buff, field[0]+"");
+	  strcat(buff, field[1]+"");
+	  strcat(buff, field[2]+"");
+	  strcat(buff, "deg ");
+	  strcat(buff, field +3);
+	  strcat(buff, "min ");
 	  getField(field, 6);
-	  Serial.println(field);
+	  strcat(buff, field);
+	  Serial1.println(buff);
      }
      else
      {
-       Serial.println("signal GPS non valide");
+       Serial1.println("signal GPS non valide");
      }
   }
 }
