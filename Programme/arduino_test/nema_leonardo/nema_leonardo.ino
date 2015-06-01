@@ -82,6 +82,7 @@ void displayGPS()
   char field[20];
   char buff[50];
   boolean signal = false;
+   can_t message;
   
   getField(field, 0);
   if (strcmp(field, "$GPRMC") == 0)
@@ -103,7 +104,8 @@ void displayGPS()
 	   strcat(buff, "min ");
 	  getField(field, 4);
 	   strcat(buff, field);
-	  Serial1.println(buff);
+      //envoi latitude sur bus can
+	  CAN.printString2Can(buff);
       //seconde ligne
 	  getField(field, 5);
 	  strcat(buff, "long: ");
@@ -115,11 +117,12 @@ void displayGPS()
 	  strcat(buff, "min ");
 	  getField(field, 6);
 	  strcat(buff, field);
-	  Serial1.println(buff);
+      //envoi longitude sur bus can
+	  CAN.printString2Can(buff);
      }
      else
      {
-       Serial1.println("signal GPS non valide");
+       CAN.printString2Can("signal GPS non valide");
      }
   }
 }
