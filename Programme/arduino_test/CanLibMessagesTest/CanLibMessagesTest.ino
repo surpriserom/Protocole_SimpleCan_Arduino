@@ -36,8 +36,13 @@
 
 void setup()
 {
-  Serial1.begin(115200);  // Initialize Serial1 communications with computer to use Serial1 monitor
+  Serial1.begin(9600);  // Initialize Serial1 communications with computer to use Serial1 monitor
 
+      while (!Serial1) {
+        ; // wait for Serial1 port to connect. Needed for Leonardo only
+      }
+      Serial1.println("Receiver on");
+      
   //Set CAN speed. Note: Speed is now 500kbit/s so adjust your CAN monitor
 
   CAN.begin(bitrate);
@@ -85,4 +90,3 @@ void loop()
   readMessage();
   delay(50);
 }
-
