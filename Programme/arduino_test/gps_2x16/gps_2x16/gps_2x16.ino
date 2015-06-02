@@ -135,7 +135,7 @@ void displayGPS()
        lcd.setCursor(0, 1);
        lcd.print("valide");
        digitalWrite(backlight, LOW);
-       delay(100);
+       delay(200);
        digitalWrite(backlight, HIGH);
        delay(100);
      }
