@@ -80,7 +80,7 @@ Designed to be used with ATMEL ATMega328P with Arduino bootloader, MCP2515 Stand
 CAN_MCP2515::CAN_MCP2515()
 {
   //Use a default of pin 10 for SPI chip select
-  CS = 10;
+  CS = 8;
   _init();
 }
 
