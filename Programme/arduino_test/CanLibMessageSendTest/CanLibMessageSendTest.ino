@@ -36,14 +36,38 @@
 
 const int sentenceSize = 80;
 unsigned char sentence[sentenceSize];
+const int led = 13;
+boolean led_state = false;
 
 void setup()
 {
   Serial1.begin(9600); // Initialize Serial communications with computer to use serial monitor
+  
+  while (!Serial1) {
+     ; // wait for Serial1 port to connect. Needed for Leonardo only
+  }
+      
+  pinMode(led, OUTPUT);//used to check  if programme is ON
+  digitalWrite(led, HIGH);
 
   //Set CAN speed. Note: Speed is now 500kbit/s so adjust your CAN monitor
-
+  
   CAN.begin(bitrate);
+  unsigned char txt[] = "can bus on";
+  writeStandardMessage(txt);
+}
+
+void writeStandardMessage(unsigned char buff[])
+{
+  unsigned long ID = 0x555; // Random Standard Message ID
+  byte length = 8; // Data length
+  int i=0;
+  uint32_t timehack = millis();
+  while(i < sentenceSize || buff[i] != '\0')
+  {
+    i++;
+  }
+  CAN.write(ID, CAN_STANDARD_FRAME, i, buff); // Load message and send
 }
 
 void writeStandardMessage()
@@ -63,6 +87,8 @@ void writeStandardMessage()
 void loop()
 {
   static int i = 0;
+  static unsigned int led_timer = 0;
+  
   if(Serial1.available() > 0)
   {
       unsigned ch = Serial1.read();
@@ -78,4 +104,25 @@ void loop()
         writeStandardMessage();
       }
   }
+  
+  
+  if(led_timer >= 5000 && led_state)
+  {
+    led_state= false;
+    led_timer = 0;
+    digitalWrite(led, LOW);
+   }
+   else
+   {
+     if(led_timer >= 10000 && !led_state)
+     {
+        led_state= true;
+        led_timer = 0;
+        digitalWrite(led, HIGH);
+     }
+     else
+     {
+       led_timer++;
+     }
+   }
 }
