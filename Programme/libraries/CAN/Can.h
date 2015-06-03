@@ -699,7 +699,7 @@ class CANclass
 	void mcp2515_write_id(const uint32_t *, uint8_t);
 	void mcp2515_write_id(const uint16_t *);
 	/**mcp2515_static_filter**/
-	void mcp2515_static_filter(const uint8_t *);
+	void mcp2515_static_filter(const prog_uint8_t *);
 	/**mcp2515_sleep**/
 	void mcp2515_sleep(void);
 	void mcp2515_wakeup(void);
