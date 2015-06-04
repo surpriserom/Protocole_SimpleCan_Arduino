@@ -53,34 +53,31 @@ void setup()
   //Set CAN speed. Note: Speed is now 500kbit/s so adjust your CAN monitor
   
   CAN.begin(bitrate);
-  unsigned char txt[] = "can bus on";
-  writeStandardMessage(txt);
-}
-
-void writeStandardMessage(unsigned char buff[])
-{
-  unsigned long ID = 0x555; // Random Standard Message ID
-  byte length = 8; // Data length
-  int i=0;
-  uint32_t timehack = millis();
-  while(i < sentenceSize || buff[i] != '\0')
-  {
-    i++;
-  }
-  CAN.write(ID, CAN_STANDARD_FRAME, i, buff); // Load message and send
 }
 
 void writeStandardMessage()
 {
   unsigned long ID = 0x555; // Random Standard Message ID
   byte length = 8; // Data length
+  unsigned char buff[8];
   int i=0;
+  int j = 0;
   uint32_t timehack = millis();
   while(i < sentenceSize || sentence[i] != '\0')
   {
     i++;
+    buff[j] = sentence[i];
+    j++;
+    if(j == 8)
+    {
+      j=0;
+      CAN.write(ID, CAN_STANDARD_FRAME, length, buff); // Load message and send
+    }
   }
-  CAN.write(ID, CAN_STANDARD_FRAME, i, sentence); // Load message and send
+  if(j != 0)
+  {
+    CAN.write(ID, CAN_STANDARD_FRAME, j, buff); // Load message and send
+  }
 }
 
 // Finally arduino loop to execute above functions with a 250ms delay
