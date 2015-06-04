@@ -11,22 +11,28 @@
 // v0.9b and v1.0 is default D10
 const int SPI_CS_PIN = 9;
 
+const int led = 13;
+
 MCP_CAN CAN(SPI_CS_PIN);                                    // Set CS pin
 
 void setup()
 {
-    Serial.begin(9600);
+    Serial1.begin(9600);
+    
+  //set the gps signal led
+  pinMode(led, OUTPUT);
+  digitalWrite(led, LOW);
 
 START_INIT:
 
     if(CAN_OK == CAN.begin(CAN_500KBPS))                   // init can bus : baudrate = 500k
     {
-        Serial.println("CAN BUS Shield init ok!");
+        Serial1.println("CAN BUS Shield init ok!");
     }
     else
     {
-        Serial.println("CAN BUS Shield init fail");
-        Serial.println("Init CAN BUS Shield again");
+        Serial1.println("CAN BUS Shield init fail");
+        Serial1.println("Init CAN BUS Shield again");
         delay(100);
         goto START_INIT;
     }
@@ -37,6 +43,7 @@ void loop()
 {
     unsigned char len = 0;
     unsigned char buf[8];
+    unsigned long time = 0;
 
     if(CAN_MSGAVAIL == CAN.checkReceive())            // check if data coming
     {
@@ -44,19 +51,28 @@ void loop()
 
         unsigned char canId = CAN.getCanId();
         
-        Serial.println("-----------------------------")
-        Serial.println("get data from ID: ")
-        Serial.println(canId);
+        Serial1.println("-----------------------------");
+        Serial1.println("get data from ID: ");
+        Serial1.println(canId);
 
         for(int i = 0; i<len; i++)    // print the data
         {
-            Serial.print(buf[i]);
-            Serial.print("\t");
+            Serial1.print(buf[i]);
+            Serial1.print("\t");
         }
-        Serial.println();
+        Serial1.println();
     }
+    
+    if(time < millis())
+    {
+      digitalWrite(led, digitalRead(led)^1);
+      time += 500;
+    }
+    
 }
 
 /*********************************************************************************************************
   END FILE
 *********************************************************************************************************/
+
+
