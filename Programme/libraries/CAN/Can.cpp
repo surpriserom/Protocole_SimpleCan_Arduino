@@ -141,7 +141,7 @@ uint8_t CANclass::spi_putc(uint8_t data)
 /****************************mcp2515_static_filter function to set a filter****************************/
 // ----------------------------------------------------------------------------
 // Filter setting
-void CANclass::mcp2515_static_filter(const uint8_t *filter)
+void CANclass::mcp2515_static_filter(const prog_uint8_t *filter)
 {
 	// Switch into configuration mode because filters can be change only in this mode 
 	mcp2515_bit_modify(CANCTRL, 0xe0, (1<<REQOP2));
@@ -966,7 +966,7 @@ uint8_t CANclass::mcp2515_read_status(uint8_t type)
 
 // -------------------------------------------------------------------------
 // <!> const PROGMEM added for newer avr-gcc versions
-const uint8_t PROGMEM _mcp2515_cnf[8][3] = {
+const prog_uint8_t PROGMEM _mcp2515_cnf[8][3] = {
 	// 10 kbps
 	{	0x05, //CNF3
 		0xB8, //CNF2

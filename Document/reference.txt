@@ -3,6 +3,8 @@ https://github.com/splashelec/splashelec
 https://github.com/McNeight/CAN-Library
 https://github.com/dergraaf/avr-can-lib
 
+https://github.com/Seeed-Studio/CAN_BUS_Shield
+
 can reference
 http://www.can-cia.org/index.php?id=systemdesign-can-protocol
 http://www.technologuepro.com/cours-systemes-embarques/cours-systemes-embarques-Bus-CAN.htm
@@ -14,3 +16,11 @@ nema gps
 http://blog.iteadstudio.com/play-arduino-with-global-positioning-system-gps/
 nema presentation
 http://www.prism-astro.com/fr/aide/Menu-Telescope/TELESCOPE-GPS/renseignements.htm
+
+
+can_programming
+http://forum.arduino.cc/index.php?topic=152145.0
+http://forum.arduino.cc/index.php?topic=248039.0
+http://forum.arduino.cc/index.php?topic=315402.0
+
+http://www.seeedstudio.com/wiki/CAN-BUS_Shield
