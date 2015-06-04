@@ -23,4 +23,6 @@ http://forum.arduino.cc/index.php?topic=152145.0
 http://forum.arduino.cc/index.php?topic=248039.0
 http://forum.arduino.cc/index.php?topic=315402.0
 
+http://bitstream24.com/arduino-controller-area-network-can-shield-with-microchip-mcp2515-controller/
 http://www.seeedstudio.com/wiki/CAN-BUS_Shield
+
