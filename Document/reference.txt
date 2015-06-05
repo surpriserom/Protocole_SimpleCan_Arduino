@@ -14,6 +14,7 @@ http://www.arduino.cc/en/Main/ArduinoBoardLeonardo
 
 nema gps
 http://blog.iteadstudio.com/play-arduino-with-global-positioning-system-gps/
+http://fr.wikipedia.org/wiki/NMEA_0183
 nema presentation
 http://www.prism-astro.com/fr/aide/Menu-Telescope/TELESCOPE-GPS/renseignements.htm
 
@@ -26,3 +27,5 @@ http://forum.arduino.cc/index.php?topic=315402.0
 http://bitstream24.com/arduino-controller-area-network-can-shield-with-microchip-mcp2515-controller/
 http://www.seeedstudio.com/wiki/CAN-BUS_Shield
 
+converstion int to char
+http://www.arduino-hacks.com/converting-integer-to-character-vice-versa/
