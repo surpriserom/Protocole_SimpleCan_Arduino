@@ -29,3 +29,6 @@ http://www.seeedstudio.com/wiki/CAN-BUS_Shield
 
 converstion int to char
 http://www.arduino-hacks.com/converting-integer-to-character-vice-versa/
+
+utiliser une classe cpp dans un .ino
+http://www.arduino.cc/en/Hacking/LibraryTutorial
