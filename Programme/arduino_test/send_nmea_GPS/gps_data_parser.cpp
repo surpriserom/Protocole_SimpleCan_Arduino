@@ -5,6 +5,12 @@
 
 #include "gps_data_parser.h"
 
+GPS_PARSER::GPS_PARSER(boolean init)
+{
+  init = init;
+  return;
+}
+
 //parse a gprmc sentence
 	void GPS_PARSER::parseGPRMC(const unsigned char buffer[], GPRMC_frame *gprmc)
 	{

@@ -3,8 +3,8 @@
  parser pour nema gps data
 */
 
-#ifndef _GPS_PARSER_
-#define _GPS_PARSER_
+#ifndef GPS_PARSER_h
+#define GPS_PARSER_h
 
 #include <Arduino.h>
 
@@ -99,11 +99,14 @@ typedef struct {
 class GPS_PARSER
 {
 	public:
+                GPS_PARSER(boolean init);
 		void parseGPRMC(const unsigned char buffer[], GPRMC_frame *data); //parse a gprmc sentence
 		void parseGPGGA(const unsigned char buffer[], GPGGA_frame *data);	//parse a gpgga sentence
 		void getNemaField(const unsigned char buffIn[], unsigned char field[], const unsigned char fieldNb); // get the field number from NMEA sentence
 		boolean isGPRMC(const unsigned char buffer[]);
 		boolean isGPGGA(const unsigned char buffer[]);
+        private:
+                boolean init;
 };
 
 #endif

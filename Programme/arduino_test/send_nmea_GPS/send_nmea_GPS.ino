@@ -10,8 +10,9 @@ const int SPI_CS_PIN = 9;
 const int led = 13;
 boolean state = false;
 
+const int nodeID = 1;
 const int sentenceSize = 80;
-
+GPS_PARSER parser(true);
 
 MCP_CAN CAN(SPI_CS_PIN);                                    // Set CS pin
 
@@ -68,10 +69,28 @@ void loop()
       else
       {
        sentence[i] = '\0';
-       if(GPS_parser.isGPRMC(sentence))
+       if(parser.isGPRMC(sentence))
        {
-         // send data:  id = 0x00, standrad frame, data len = 8, stmp: data buf
-          CAN.sendMsgBuf(0x00, 0, i, sentence);
+         if(i < 28)
+         {
+         // send data:  id node, extended frame, data len = i max 29, stmp: data buf
+          CAN.sendMsgBuf(nodeID, 1, i, sentence);
+         }
+         else
+         { //si la chaine est trop grande nous allons la decouper en secance de 28 charactere
+           int cpt = 0;
+           unsigned char buff[29];
+           while( cpt < i)
+           {
+             buff[cpt%28] = sentence[cpt];
+             cpt++;
+             if(cpt%28 == 0)
+             {
+               CAN.sendMsgBuf(nodeID, 1, 28, buff);
+             }
+           }
+           CAN.sendMsgBuf(nodeID, 1, (cpt%28), buff);
+         }
        }
        i = 0;
       }
