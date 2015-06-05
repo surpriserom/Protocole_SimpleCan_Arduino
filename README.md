@@ -9,4 +9,7 @@ see splashelec [wiki](http://wiki.splashelec.com/) or [github](https://github.co
 
 #### github can source 
 from [McNeight/CAN-Library](https://github.com/McNeight/CAN-Library) for Multiplatform CAN library for Arduino supporting the MCP2515, SAM3X, and K2X controllers 
+
 and [dergraaf/avr-can-lib](https://github.com/dergraaf/avr-can-lib) for Universelle CAN Blibiothek (avr-can-lib)
+
+[Seeed-Studio/CAN_BUS_Shield](https://github.com/Seeed-Studio/CAN_BUS_Shield) can library for can bus shield with embed MCP2515 CAN Bus controller with SPI interface and MCP2551 CAN transceiver
