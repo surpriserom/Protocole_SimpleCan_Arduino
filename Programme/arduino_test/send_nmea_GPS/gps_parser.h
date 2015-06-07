@@ -26,28 +26,28 @@ field -> 10 -> 020.3 -> Déclinaison Magnetique 20.3 deg Est
 field cheksum -> 11 -> E*68 -> cheksum 68
 */
 typedef struct {
-  unsigned char valide; 
+  char valide; 
   //latitude data
-  unsigned char latInd;     //indicateur de latitude N=nord, S=sud
-  unsigned char latDeg[3] = "00";  //degree from 0 to 90
-  unsigned char latMn[8] = "0000000";   //minute
+  char latInd;     //indicateur de latitude N=nord, S=sud
+  char latDeg[3] = "00";  //degree from 0 to 90
+  char latMn[8] = "0000000";   //minute
   
   //longitude data
-  unsigned char longInd;  //indicateur de longitude E=est, W=ouest
-  unsigned char longDeg[4] = "000";  //degree from 0 to 180
-  unsigned char longMn[8] = "0000000";   //minute
+  char longInd;  //indicateur de longitude E=est, W=ouest
+  char longDeg[4] = "000";  //degree from 0 to 180
+  char longMn[8] = "0000000";   //minute
   
   //date
-  unsigned char day[3] = "00";
-  unsigned char month[3] = "00";
-  unsigned char year[3] = "00"; //seule les 2 dernier chiffres de l'annee
+  char day[3] = "00";
+  char month[3] = "00";
+  char year[3] = "00"; //seule les 2 dernier chiffres de l'annee
   
   //time utc
-  unsigned char hour[3] = "00";
-  unsigned char minute[3] = "00";
-  unsigned char second[3] = "00";
+  char hour[3] = "00";
+  char minute[3] = "00";
+  char second[3] = "00";
   
-  unsigned char speed[6] = "00000"; //vitesse en noeud
+  char speed[6] = "00000"; //vitesse en noeud
   }GPRMC_frame;
   
 /*
@@ -71,27 +71,27 @@ typedef struct {
 *  Non représentés CR et LF.
 */
   typedef struct {
-  unsigned char valide; 
+  char valide; 
   //latitude data
-  unsigned char latInd;     //indicateur de latitude N=nord, S=sud
-  unsigned char latDeg[3] = "00";  //degree from 0 to 90
-  unsigned char latMn[8] = "0000000";   //minute
+  char latInd;     //indicateur de latitude N=nord, S=sud
+  char latDeg[3] = "00";  //degree from 0 to 90
+  char latMn[8] = "0000000";   //minute
   
   //longitude data
-  unsigned char longInd;  //indicateur de longitude E=est, W=ouest
-  unsigned char longDeg[4] = "000";  //degree from 0 to 180
-  unsigned char longMn[8] = "0000000";   //minute
+  char longInd;  //indicateur de longitude E=est, W=ouest
+  char longDeg[4] = "000";  //degree from 0 to 180
+  char longMn[8] = "0000000";   //minute
   
   //time utc
-  unsigned char hour[3] = "00";
-  unsigned char minute[3] = "00";
-  unsigned char second[3] = "00";
+  char hour[3] = "00";
+  char minute[3] = "00";
+  char second[3] = "00";
   
-  unsigned char nbSat[3] = "00"; //Satellites are in view
-  unsigned char accuracy[4] = "000"; //Relative accuracy of horizontal position
+  char nbSat[3] = "00"; //Satellites are in view
+  char accuracy[4] = "000"; //Relative accuracy of horizontal position
   
-  unsigned char altitude[6] = "00000"; // altitude above mean sea level
-  unsigned char altitudeUnite; // altitude unite mesure (meter)
+  char altitude[6] = "00000"; // altitude above mean sea level
+  char altitudeUnite; // altitude unite mesure (meter)
   
   }GPGGA_frame;
 
@@ -100,11 +100,11 @@ class GPS_PARSER
 {
 	public:
                 GPS_PARSER(boolean init);
-		void parseGPRMC(const unsigned char buffer[], GPRMC_frame *data); //parse a gprmc sentence
-		void parseGPGGA(const unsigned char buffer[], GPGGA_frame *data);	//parse a gpgga sentence
-		void getNemaField(const unsigned char buffIn[], unsigned char field[], const unsigned char fieldNb); // get the field number from NMEA sentence
-		boolean isGPRMC(const unsigned char buffer[]);
-		boolean isGPGGA(const unsigned char buffer[]);
+		void parseGPRMC(const char buffer[], GPRMC_frame *data); //parse a gprmc sentence
+		void parseGPGGA(const char buffer[], GPGGA_frame *data);	//parse a gpgga sentence
+		void getNemaField(const char buffIn[], char field[], const unsigned char fieldNb); // get the field number from NMEA sentence
+		boolean isGPRMC(const char buffer[]);
+		boolean isGPGGA(const char buffer[]);
         private:
                 boolean init;
 };

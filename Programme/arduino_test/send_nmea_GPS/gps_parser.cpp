@@ -3,7 +3,7 @@
  parser pour nema gps data
 */
 
-#include "gps_data_parser.h"
+#include "gps_parser.h"
 
 GPS_PARSER::GPS_PARSER(boolean init)
 {
@@ -12,7 +12,7 @@ GPS_PARSER::GPS_PARSER(boolean init)
 }
 
 //parse a gprmc sentence
-	void GPS_PARSER::parseGPRMC(const unsigned char buffer[], GPRMC_frame *gprmc)
+	void GPS_PARSER::parseGPRMC(const char buffer[], GPRMC_frame *gprmc)
 	{
 		unsigned char sentencePos = 0;
 		unsigned char fieldPos = 0;
@@ -25,7 +25,7 @@ GPS_PARSER::GPS_PARSER(boolean init)
 			return;
 		}
 		
-		while (sentencePos < NMEALenght)
+		while (sentencePos < NMEALenght && buffer[sentencePos] != '\n')
 		{
 			if (buffer[sentencePos] == ',')
 			{
@@ -139,12 +139,11 @@ GPS_PARSER::GPS_PARSER(boolean init)
 	}
 
 //parse a gpgga sentence
-	void GPS_PARSER::parseGPGGA(const unsigned char buffer[], GPGGA_frame *gpgga)
+	void GPS_PARSER::parseGPGGA(const char buffer[], GPGGA_frame *gpgga)
 	{
 		unsigned char sentencePos = 0;
 		unsigned char fieldPos = 0;
 		unsigned char commaCount = 0;
-                unsigned char field[20];
 		
 		//on teste si on recois une trame correct pour eviter de boucler sur une tram qui ne 
 		//correspond pas a celle du gpgga
@@ -153,7 +152,7 @@ GPS_PARSER::GPS_PARSER(boolean init)
 			return;
 		}
 		
-		while (sentencePos < NMEALenght)
+		while (sentencePos < NMEALenght && buffer[sentencePos] != '\n')
 		{
 			if (buffer[sentencePos] == ',')
 			{
@@ -259,12 +258,12 @@ GPS_PARSER::GPS_PARSER(boolean init)
 	}
 		
 // get the field number from NMEA sentence
-	void GPS_PARSER::getNemaField(const unsigned char buffIn[], unsigned char field[], const unsigned char fieldNb)
+	void GPS_PARSER::getNemaField(const char buffIn[], char field[], const unsigned char fieldNb)
 	{
 		unsigned char sentencePos = 0;
 		unsigned char fieldPos = 0;
 		unsigned char commaCount = 0;
-		while (sentencePos < NMEALenght && commaCount > fieldNb)
+		while (sentencePos < NMEALenght && commaCount > fieldNb && buffIn[sentencePos] != '\n')
 		{
 			if (buffIn[sentencePos] == ',')
 			{
@@ -282,41 +281,26 @@ GPS_PARSER::GPS_PARSER(boolean init)
 	}
 
 //test if data buffer is nmea gprmc
-	boolean GPS_PARSER::isGPRMC(const unsigned char buffer[])
+	boolean GPS_PARSER::isGPRMC(const char buffer[])
 	{
-		unsigned char field[10];
-                unsigned char str[] = "$GPRMC";
-                unsigned char i = 0;
-                boolean test = true;
-		getNemaField(buffer,field, 0);
-                while(i < 6)
-                {
-                  if(field[i] != str[i])
-                   {
-                     test = false;
-                     break;  
-                   }
-                  i++;  
-                }
-		return test;
+              char temp[7];
+              for(int i =0; i < 6; i++)
+              {
+                temp[i] = buffer[i];
+              }
+              temp[6] = '\0';
+		return (strcmp(temp,"$GPRMC")==0);
 	}
 		
 //test if data buffer is nmea gprmc
-	boolean GPS_PARSER::isGPGGA(const unsigned char buffer[])
+	boolean GPS_PARSER::isGPGGA(const char buffer[])
 	{
-		unsigned char field[10];
-                unsigned char str[] = "$GPGGA";
-                unsigned char i = 0;
-                boolean test = true;
-		getNemaField(buffer,field, 0);
-                while(i < 6)
-                {
-                  if(field[i] != str[i])
-                   {
-                     test = false;
-                     break;  
-                   }
-                  i++;  
-                }
-		return test;
+              char temp[7];
+              for(int i =0; i < 6; i++)
+              {
+                temp[i] = buffer[i];
+              }
+              temp[6] = '\0';
+		return (strcmp(temp,"$GPGGA")==0);
 	}
+

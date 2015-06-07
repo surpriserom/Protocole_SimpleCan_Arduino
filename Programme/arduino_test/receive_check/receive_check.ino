@@ -12,6 +12,7 @@
 const int SPI_CS_PIN = 9;
 
 const int led = 13;
+boolean state = false;
 
 MCP_CAN CAN(SPI_CS_PIN);                                    // Set CS pin
 
@@ -46,24 +47,26 @@ void loop()
 {
     unsigned char len = 0;
     char buf[80];
-    unsigned long time = 0;
+    static unsigned long time = 0;
+    unsigned long time2 = 0;
     if(CAN_MSGAVAIL == CAN.checkReceive())            // check if data coming
     {
-        CAN.readMsgBufCh(&len, buf);    // read data,  len: data length, buf: data buf
+        CAN.readMsgBuf(&len,(unsigned char *) buf);    // read data,  len: data length, buf: data buf
 
         unsigned char canId = CAN.getCanId();
         
-        Serial1.println("-----------------------------");
-        Serial1.println("get data from ID: ");
+        Serial1.print("get data from ID: ");
         Serial1.println(canId);
         buf[len] = '\0';
         Serial1.println(buf);
     }
     
-    if(time < millis())
+    time2 = millis();
+    if(time2 > time )
     {
-      digitalWrite(led, digitalRead(led)^1);
-      time += 500;
+      state = !state;
+      digitalWrite(led, (state ? HIGH : LOW));
+      time = time + (state ? 500 : 1000);
     }
     
 }
