@@ -38,3 +38,6 @@ http://www.arduino.cc/en/Hacking/LibraryTutorial
 
 can reference
 http://savvymicrocontrollersolutions.com/arduino.php?article=adafruit-ultimate-gps-shield-seeedstudio-can-bus-shield
+
+um6 capteur
+http://forum.arduino.cc/index.php?topic=108689.0
