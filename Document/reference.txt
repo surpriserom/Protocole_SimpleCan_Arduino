@@ -36,7 +36,7 @@ http://www.arduino-hacks.com/converting-integer-to-character-vice-versa/
 utiliser une classe cpp dans un .ino
 http://www.arduino.cc/en/Hacking/LibraryTutorial
 
-can reference
+gps can reference
 http://savvymicrocontrollersolutions.com/arduino.php?article=adafruit-ultimate-gps-shield-seeedstudio-can-bus-shield
 
 um6 capteur
