@@ -1,0 +1,4748 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<CHR_FIRMWARE id="OR1A" name="GP6 Firmware rev. 1.0" description="GP6 Firmware rev. 1.0">
+	<!-- ********************************************************* -->
+	<!-- CONFIGURATION ITEMS -->
+	<!-- ********************************************************* -->
+	<ConfigGroup>
+		<Name>Filter Settings</Name>
+		<Description>Filter Settings</Description>
+
+		<ConfigItem>
+			<Name>Magnetometer Updates Enabled</Name>
+			<Description>Magnetometer updates enabled/disabled</Description>
+			<Address>8</Address>
+			<Bits>1</Bits>
+			<Start>0</Start>
+			<DataType>en/dis</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Home latitude</Name>
+			<Description>Specifies home latitude in degrees</Description>
+			<Address>9</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Home longitude</Name>
+			<Description>Specifies home longitude in degrees</Description>
+			<Address>10</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Home altitude</Name>
+			<Description>Specifies home altitude in meters above sea level</Description>
+			<Address>11</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Home pressure</Name>
+			<Description>Specifies pressure reading at zero altitude</Description>
+			<Address>12</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+	</ConfigGroup>
+	
+	<ConfigGroup>
+    <Name>Misc. Settings</Name>
+    <Description>Communication Settings</Description>
+
+    <!-- BROADCAST ENABLED -->
+    <ConfigItem>
+      <Name>Baud Rate</Name>
+      <Description>Specifies the serial port baud rate</Description>
+      <Address>0</Address>
+      <Bits>4</Bits>
+      <Start>28</Start>
+      <DataType>option</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+
+      <Option>
+        <Name>0: 9600 Baud</Name>
+        <Value>0</Value>
+      </Option>
+      <Option>
+        <Name>1: 14400 Baud</Name>
+        <Value>1</Value>
+      </Option>
+      <Option>
+        <Name>2: 19200 Baud</Name>
+        <Value>2</Value>
+      </Option>
+      <Option>
+        <Name>3: 38400 Baud</Name>
+        <Value>3</Value>
+      </Option>
+      <Option>
+        <Name>4: 57600 Baud</Name>
+        <Value>4</Value>
+      </Option>
+      <Option>
+        <Name>5: 115200 Baud</Name>
+        <Value>5</Value>
+      </Option>
+      <Option>
+        <Name>6: 128000 Baud</Name>
+        <Value>6</Value>
+      </Option>
+      <Option>
+        <Name>7: 153600 Baud</Name>
+        <Value>7</Value>
+      </Option>
+		<Option>
+			<Name>8: 230400 Baud</Name>
+			<Value>8</Value>
+		</Option>
+		<Option>
+			<Name>9: 256000 Baud</Name>
+			<Value>9</Value>
+		</Option>
+		<Option>
+			<Name>10: 460800 Baud</Name>
+			<Value>10</Value>
+		</Option>
+		<Option>
+			<Name>11: 921600 Baud</Name>
+			<Value>11</Value>
+		</Option>
+    </ConfigItem>
+  </ConfigGroup>
+
+	<ConfigGroup>
+		<Name>Broadcast Rates - States</Name>
+		<Description>Specifies which processed data is transmitted and at what rates</Description>
+
+		<!-- HEALTH  -->
+		<ConfigItem>
+			<Name>Broadcast Rate - Health</Name>
+			<Description>Specifies how often states are transmitted over the serial line</Description>
+			<Address>6</Address>
+			<Bits>4</Bits>
+			<Start>16</Start>
+			<DataType>option</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+
+			<Option>
+				<Name>0: Off</Name>
+				<Value>0</Value>
+			</Option>
+			<Option>
+				<Name>1: 0.125 Hz</Name>
+				<Value>1</Value>
+			</Option>
+			<Option>
+				<Name>2: 0.25 Hz</Name>
+				<Value>2</Value>
+			</Option>
+			<Option>
+				<Name>3: 0.5 Hz</Name>
+				<Value>3</Value>
+			</Option>
+			<Option>
+				<Name>4: 1.0 Hz</Name>
+				<Value>4</Value>
+			</Option>
+			<Option>
+				<Name>5: 2 Hz</Name>
+				<Value>5</Value>
+			</Option>
+			<Option>
+				<Name>6: 4 Hz</Name>
+				<Value>6</Value>
+			</Option>
+		</ConfigItem>
+
+		<!-- POSE  -->
+		<ConfigItem>
+			<Name>Pose Broadcast Rate (Hz)</Name>
+			<Description>Specifies how often states are transmitted over the serial line</Description>
+			<Address>6</Address>
+			<Bits>8</Bits>
+			<Start>24</Start>
+			<DataType>uint16</DataType>
+			<Min>0</Min>
+			<Max>255</Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<!-- QUATERNION  -->
+		<ConfigItem>
+			<Name>Quaternion Broadcast Rate (Hz)</Name>
+			<Description>Specifies how often states are transmitted over the serial line</Description>
+			<Address>5</Address>
+			<Bits>8</Bits>
+			<Start>24</Start>
+			<DataType>uint16</DataType>
+			<Min>0</Min>
+			<Max>255</Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<!-- EULER ANGLES  -->
+		<ConfigItem>
+			<Name>Euler Angle Broadcast Rate (Hz)</Name>
+			<Description>Specifies how often states are transmitted over the serial line</Description>
+			<Address>5</Address>
+			<Bits>8</Bits>
+			<Start>16</Start>
+			<DataType>uint16</DataType>
+			<Min>0</Min>
+			<Max>255</Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<!-- POSITION  -->
+		<ConfigItem>
+			<Name>Position Broadcast Rate (Hz)</Name>
+			<Description>Specifies how often states are transmitted over the serial line</Description>
+			<Address>5</Address>
+			<Bits>8</Bits>
+			<Start>8</Start>
+			<DataType>uint16</DataType>
+			<Min>0</Min>
+			<Max>255</Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<!-- VELOCITY  -->
+		<ConfigItem>
+			<Name>Velocity Broadcast Rate (Hz)</Name>
+			<Description>Specifies how often states are transmitted over the serial line</Description>
+			<Address>5</Address>
+			<Bits>8</Bits>
+			<Start>0</Start>
+			<DataType>uint16</DataType>
+			<Min>0</Min>
+			<Max>255</Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<!-- GYRO BIASES  -->
+		<ConfigItem>
+			<Name>Gyro Bias Broadcast Rate (Hz)</Name>
+			<Description>Specifies how often states are transmitted over the serial line</Description>
+			<Address>6</Address>
+			<Bits>8</Bits>
+			<Start>0</Start>
+			<DataType>uint16</DataType>
+			<Min>0</Min>
+			<Max>255</Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<!-- WIND  -->
+		<ConfigItem>
+			<Name>Wind Broadcast Rate (Hz)</Name>
+			<Description>Specifies how often states are transmitted over the serial line</Description>
+			<Address>6</Address>
+			<Bits>8</Bits>
+			<Start>8</Start>
+			<DataType>uint16</DataType>
+			<Min>0</Min>
+			<Max>255</Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+	</ConfigGroup>
+
+	<ConfigGroup>
+		<Name>Broadcast Rates - NMEA Packets</Name>
+		<Description>Broadcast settings for human-readable NMEA packet data</Description>
+
+		<!-- NMEA HEALTH  -->
+		<ConfigItem>
+			<Name>NMEA Health Broadcast Rate</Name>
+			<Description>Specifies how often states are transmitted over the serial line</Description>
+			<Address>7</Address>
+			<Bits>4</Bits>
+			<Start>28</Start>
+			<DataType>option</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+
+			<Option>
+				<Name>0: OFF</Name>
+				<Value>0</Value>
+			</Option>
+			<Option>
+				<Name>1: 0.125 Hz</Name>
+				<Value>1</Value>
+			</Option>
+			<Option>
+				<Name>2: 0.25 Hz</Name>
+				<Value>2</Value>
+			</Option>
+			<Option>
+				<Name>3: 0.5 Hz</Name>
+				<Value>3</Value>
+			</Option>
+			<Option>
+				<Name>4: 1.0 Hz</Name>
+				<Value>4</Value>
+			</Option>
+			<Option>
+				<Name>5: 2.0 Hz</Name>
+				<Value>5</Value>
+			</Option>
+			<Option>
+				<Name>6: 4.0 Hz</Name>
+				<Value>6</Value>
+			</Option>
+			<Option>
+				<Name>7: 8.0 Hz</Name>
+				<Value>7</Value>
+			</Option>
+		</ConfigItem>
+
+		<!-- NMEA POSE  -->
+		<ConfigItem>
+			<Name>NMEA Pose Broadcast Rate</Name>
+			<Description>Specifies how often states are transmitted over the serial line</Description>
+			<Address>7</Address>
+			<Bits>4</Bits>
+			<Start>24</Start>
+			<DataType>option</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+
+			<Option>
+				<Name>0: OFF</Name>
+				<Value>0</Value>
+			</Option>
+			<Option>
+				<Name>1: 0.125 Hz</Name>
+				<Value>1</Value>
+			</Option>
+			<Option>
+				<Name>2: 0.25 Hz</Name>
+				<Value>2</Value>
+			</Option>
+			<Option>
+				<Name>3: 0.5 Hz</Name>
+				<Value>3</Value>
+			</Option>
+			<Option>
+				<Name>4: 1.0 Hz</Name>
+				<Value>4</Value>
+			</Option>
+			<Option>
+				<Name>5: 2.0 Hz</Name>
+				<Value>5</Value>
+			</Option>
+			<Option>
+				<Name>6: 4.0 Hz</Name>
+				<Value>6</Value>
+			</Option>
+			<Option>
+				<Name>7: 8.0 Hz</Name>
+				<Value>7</Value>
+			</Option>
+		</ConfigItem>
+
+		<!-- NMEA ATTITUDE  -->
+		<ConfigItem>
+			<Name>NMEA Orientation Broadcast Rate</Name>
+			<Description>Specifies how often states are transmitted over the serial line</Description>
+			<Address>7</Address>
+			<Bits>4</Bits>
+			<Start>20</Start>
+			<DataType>option</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+
+			<Option>
+				<Name>0: OFF</Name>
+				<Value>0</Value>
+			</Option>
+			<Option>
+				<Name>1: 0.125 Hz</Name>
+				<Value>1</Value>
+			</Option>
+			<Option>
+				<Name>2: 0.25 Hz</Name>
+				<Value>2</Value>
+			</Option>
+			<Option>
+				<Name>3: 0.5 Hz</Name>
+				<Value>3</Value>
+			</Option>
+			<Option>
+				<Name>4: 1.0 Hz</Name>
+				<Value>4</Value>
+			</Option>
+			<Option>
+				<Name>5: 2.0 Hz</Name>
+				<Value>5</Value>
+			</Option>
+			<Option>
+				<Name>6: 4.0 Hz</Name>
+				<Value>6</Value>
+			</Option>
+			<Option>
+				<Name>7: 8.0 Hz</Name>
+				<Value>7</Value>
+			</Option>
+		</ConfigItem>
+
+		<!-- NMEA SENSOR DATA  -->
+		<ConfigItem>
+			<Name>NMEA Sensor Broadcast Rate</Name>
+			<Description>Specifies how often states are transmitted over the serial line</Description>
+			<Address>7</Address>
+			<Bits>4</Bits>
+			<Start>16</Start>
+			<DataType>option</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+
+			<Option>
+				<Name>0: OFF</Name>
+				<Value>0</Value>
+			</Option>
+			<Option>
+				<Name>1: 0.125 Hz</Name>
+				<Value>1</Value>
+			</Option>
+			<Option>
+				<Name>2: 0.25 Hz</Name>
+				<Value>2</Value>
+			</Option>
+			<Option>
+				<Name>3: 0.5 Hz</Name>
+				<Value>3</Value>
+			</Option>
+			<Option>
+				<Name>4: 1.0 Hz</Name>
+				<Value>4</Value>
+			</Option>
+			<Option>
+				<Name>5: 2.0 Hz</Name>
+				<Value>5</Value>
+			</Option>
+			<Option>
+				<Name>6: 4.0 Hz</Name>
+				<Value>6</Value>
+			</Option>
+			<Option>
+				<Name>7: 8.0 Hz</Name>
+				<Value>7</Value>
+			</Option>
+		</ConfigItem>
+	</ConfigGroup>
+	
+	<ConfigGroup>
+		<Name>Broadcast Rates - Processed Data</Name>
+		<Description>Communication Settings</Description>
+
+		<!-- ALL PROCESSED  -->
+		<ConfigItem>
+			<Name>All Processed Broadcast Rate (Hz)</Name>
+			<Description>Specifies how often states are transmitted over the serial line</Description>
+			<Address>4</Address>
+			<Bits>8</Bits>
+			<Start>0</Start>
+			<DataType>uint16</DataType>
+			<Min>0</Min>
+			<Max>255</Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+		
+		<!-- PROCESSED ACCELEROMETER  -->
+		<ConfigItem>
+			<Name>Processed Accel Broadcast Rate (Hz)</Name>
+			<Description>Specifies how often states are transmitted over the serial line</Description>
+			<Address>3</Address>
+			<Bits>8</Bits>
+			<Start>24</Start>
+			<DataType>uint16</DataType>
+			<Min>0</Min>
+			<Max>255</Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<!-- PROCESSED GYRO  -->
+		<ConfigItem>
+			<Name>Processed Gyro Broadcast Rate (Hz)</Name>
+			<Description>Specifies how often states are transmitted over the serial line</Description>
+			<Address>3</Address>
+			<Bits>8</Bits>
+			<Start>16</Start>
+			<DataType>uint16</DataType>
+			<Min>0</Min>
+			<Max>255</Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<!-- PROCESSED MAG  -->
+		<ConfigItem>
+			<Name>Processed Mag Broadcast Rate (Hz)</Name>
+			<Description>Specifies how often states are transmitted over the serial line</Description>
+			<Address>3</Address>
+			<Bits>8</Bits>
+			<Start>8</Start>
+			<DataType>uint16</DataType>
+			<Min>0</Min>
+			<Max>255</Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<!-- PROCESSED PRESSURE RATE  -->
+		<ConfigItem>
+			<Name>Processed Pressure Broadcast Rate (Hz)</Name>
+			<Description>Specifies how often states are transmitted over the serial line</Description>
+			<Address>3</Address>
+			<Bits>8</Bits>
+			<Start>0</Start>
+			<DataType>uint16</DataType>
+			<Min>0</Min>
+			<Max>255</Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<!-- PROCESSED TEMPERATURE RATE  -->
+		<ConfigItem>
+			<Name>Processed Temperature Broadcast Rate (Hz)</Name>
+			<Description>Specifies how often states are transmitted over the serial line</Description>
+			<Address>4</Address>
+			<Bits>8</Bits>
+			<Start>24</Start>
+			<DataType>uint16</DataType>
+			<Min>0</Min>
+			<Max>255</Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+	</ConfigGroup>
+	
+  <ConfigGroup>
+    <Name>Broadcast Rates - Raw Data</Name>
+    <Description>Raw Data Broadcast Settings</Description>
+
+	  <!-- ALL RAW  -->
+	  <ConfigItem>
+		  <Name>All Raw Broadcast Rate (Hz)</Name>
+		  <Description>Specifies how often states are transmitted over the serial line</Description>
+		  <Address>2</Address>
+		  <Bits>8</Bits>
+		  <Start>0</Start>
+		  <DataType>uint16</DataType>
+		  <Min>0</Min>
+		  <Max>255</Max>
+		  <ScaleFactor>1.0</ScaleFactor>
+	  </ConfigItem>
+	  
+    <!-- RAW ACCELEROMETER  -->
+    <ConfigItem>
+      <Name>Raw Accel Broadcast Rate (Hz)</Name>
+      <Description>Specifies how often states are transmitted over the serial line</Description>
+      <Address>1</Address>
+      <Bits>8</Bits>
+      <Start>24</Start>
+      <DataType>uint16</DataType>
+      <Min>0</Min>
+      <Max>255</Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+
+    <!-- RAW GYRO  -->
+    <ConfigItem>
+      <Name>Raw Gyro Broadcast Rate (Hz)</Name>
+      <Description>Specifies how often states are transmitted over the serial line</Description>
+      <Address>1</Address>
+      <Bits>8</Bits>
+      <Start>16</Start>
+      <DataType>uint16</DataType>
+      <Min>0</Min>
+      <Max>255</Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+
+    <!-- RAW MAG  -->
+    <ConfigItem>
+      <Name>Raw Mag Broadcast Rate (Hz)</Name>
+      <Description>Specifies how often states are transmitted over the serial line</Description>
+      <Address>1</Address>
+      <Bits>8</Bits>
+      <Start>8</Start>
+      <DataType>uint16</DataType>
+      <Min>0</Min>
+      <Max>255</Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+
+    <!-- RAW PRESSURE RATE -->
+    <ConfigItem>
+      <Name>Raw Pressure Broadcast Rate (Hz)</Name>
+      <Description>Specifies how often states are transmitted over the serial line</Description>
+      <Address>1</Address>
+      <Bits>8</Bits>
+      <Start>0</Start>
+      <DataType>uint16</DataType>
+      <Min>0</Min>
+      <Max>255</Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+
+    <!-- Temperature data  -->
+    <ConfigItem>
+      <Name>Temperature Broadcast Rate (Hz)</Name>
+      <Description>Specifies how often states are transmitted over the serial line</Description>
+      <Address>2</Address>
+      <Bits>8</Bits>
+      <Start>24</Start>
+      <DataType>uint16</DataType>
+      <Min>0</Min>
+      <Max>255</Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+  </ConfigGroup>
+
+	<ConfigGroup>
+		<Name>Broadcast Settings - GPS</Name>
+		<Description>GPS Broadcast Settings</Description>
+
+		<!-- GPS DATA ENABLED -->
+		<ConfigItem>
+			<Name>Raw GPS Broadcast</Name>
+			<Description>Specifies whether GPS position data is transmitted automatically by the sensor</Description>
+			<Address>0</Address>
+			<Bits>1</Bits>
+			<Start>8</Start>
+			<DataType>en/dis</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<!-- GPS SATELLITE DATA ENABLED -->
+		<ConfigItem>
+			<Name>Satellite Status Broadcast Enabled</Name>
+			<Description>Specifies whether satellite status is transmitted automatically by the sensor</Description>
+			<Address>0</Address>
+			<Bits>1</Bits>
+			<Start>4</Start>
+			<DataType>en/dis</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+	</ConfigGroup>
+
+	<!-- Magnetometer Calibration Registers -->
+	<ConfigGroup>
+		<Name>Mag Calibration</Name>
+		<Description>Magnetometer hard and soft iron calibration</Description>
+
+		<ConfigItem>
+			<Name>Matrix Row 1 Column 1</Name>
+			<Description>Magnetometer calibration matrix</Description>
+			<Address>17</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Matrix Row 1 Column 2</Name>
+			<Description>Magnetometer calibration matrix</Description>
+			<Address>18</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Matrix Row 1 Column 3</Name>
+			<Description>Magnetometer calibration matrix</Description>
+			<Address>19</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Matrix Row 2 Column 1</Name>
+			<Description>Magnetometer calibration matrix</Description>
+			<Address>20</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Matrix Row 2 Column 2</Name>
+			<Description>Magnetometer calibration matrix</Description>
+			<Address>21</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Matrix Row 2 Column 3</Name>
+			<Description>Magnetometer calibration matrix</Description>
+			<Address>22</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Matrix Row 3 Column 1</Name>
+			<Description>Magnetometer calibration matrix</Description>
+			<Address>23</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Matrix Row 3 Column 2</Name>
+			<Description>Magnetometer calibration matrix</Description>
+			<Address>24</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Matrix Row 3 Column 3</Name>
+			<Description>Magnetometer calibration matrix</Description>
+			<Address>25</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Bias X</Name>
+			<Description>Magnetometer calibration bias</Description>
+			<Address>26</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Bias Y</Name>
+			<Description>Magnetometer calibration bias</Description>
+			<Address>27</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Bias Z</Name>
+			<Description>Magnetometer calibration bias</Description>
+			<Address>28</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+	</ConfigGroup>
+
+	<!-- GYRO TRIM SETTINGS-->
+	<ConfigGroup>
+		<Name>Gyro Trim</Name>
+		<Description>Trim settings for maintaining gyro zero</Description>
+
+		<!-- Gyro X trim -->
+		<ConfigItem>
+			<Name>Gyro X Trim</Name>
+			<Description>Specifies an x-axis trim value for maintaining zero output bias</Description>
+			<Address>14</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<!-- Gyro Y trim -->
+		<ConfigItem>
+			<Name>Gyro Y Trim</Name>
+			<Description>Specifies a y-axis trim value for maintaining zero output bias</Description>
+			<Address>15</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<!-- Gyro Z trim -->
+		<ConfigItem>
+			<Name>Gyro Z Trim</Name>
+			<Description>Specifies a z-axis trim value for maintaining zero output bias</Description>
+			<Address>16</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+	</ConfigGroup>
+
+	<HiddenConfigGroup>
+		<Name>Sensor Variance Settings</Name>
+		<Description>Sensor Variances</Description>
+
+		<ConfigItem>
+			<Name>Rate Gyros</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>0</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Accelerometers</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>1</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Magnetometer</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>2</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>GPS Course</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>3</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>GPS Position</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>4</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>GPS Velocity</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>5</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Static pressure</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>6</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Differential pressure</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>7</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Psibar</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>8</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+		
+	</HiddenConfigGroup>
+
+	<HiddenConfigGroup>
+		<Name>Filter Q Settings</Name>
+		<Description>Filter Variances</Description>
+
+		<ConfigItem>
+			<Name>Q_uvw</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>9</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Q_quaternion</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>10</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Q_gps_position</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>11</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Q_wind</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>12</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Q_Euler</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>13</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>low_vg_accel_noise_factor</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>14</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+	</HiddenConfigGroup>
+
+	<HiddenConfigGroup>
+		<Name>LPF settings</Name>
+		<Description>LPF settings</Description>
+
+		<ConfigItem>
+			<Name>tau_airspeed</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>15</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>tau_groundspeed</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>16</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>tau_accel</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>17</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>tau_gyro</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>18</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>tau_mag</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>19</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>tau_abs_pressure</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>20</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+	</HiddenConfigGroup>
+
+	<HiddenConfigGroup>
+		<Name>Gyro temperature cal</Name>
+		<Description>Gyro calibration settings</Description>
+
+		<ConfigItem>
+			<Name>Cgbx0</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>25</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgbx1</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>26</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgbx2</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>27</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgbx3</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>28</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgby0</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>29</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgby1</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>30</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgby2</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>31</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgby3</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>32</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgbz0</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>33</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgbz1</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>34</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgbz2</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>35</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgbz3</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>36</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgsx0</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>37</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgsx1</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>38</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgsx2</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>39</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgsx3</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>40</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgsy0</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>41</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgsy1</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>42</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgsy2</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>43</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgsy3</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>44</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgsz0</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>45</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgsz1</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>46</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgsz2</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>47</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cgsz3</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>48</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+		
+	</HiddenConfigGroup>
+
+	<HiddenConfigGroup>
+		<Name>Accel temperature cal</Name>
+		<Description>Accel calibration settings</Description>
+
+		<ConfigItem>
+			<Name>Cabx0</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>58</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cabx1</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>59</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cabx2</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>60</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cabx3</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>61</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Caby0</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>62</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Caby1</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>63</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Caby2</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>64</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Caby3</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>65</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cabz0</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>66</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cabz1</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>67</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cabz2</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>68</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cabz3</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>69</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Casx0</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>70</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Casx1</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>71</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Casx2</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>72</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Casx3</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>73</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Casy0</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>74</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Casy1</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>75</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Casy2</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>76</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Casy3</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>77</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Casz0</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>78</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Casz1</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>79</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Casz2</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>80</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Casz3</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>81</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+	</HiddenConfigGroup>
+
+	<HiddenConfigGroup>
+		<Name>Mag temperature cal</Name>
+		<Description>Mag calibration settings</Description>
+
+		<ConfigItem>
+			<Name>Cmbx0</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>91</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmbx1</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>92</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmbx2</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>93</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmbx3</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>94</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmby0</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>95</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmby1</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>96</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmby2</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>97</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmby3</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>98</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmbz0</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>99</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmbz1</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>100</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmbz2</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>101</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmbz3</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>102</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmsx0</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>103</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmsx1</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>104</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmsx2</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>105</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmsx3</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>106</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmsy0</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>107</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmsy1</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>108</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmsy2</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>109</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmsy3</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>110</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmsz0</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>111</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmsz1</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>112</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmsz2</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>113</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Cmsz3</Name>
+			<Description>Specifies sensor variance</Description>
+			<Address>114</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+	</HiddenConfigGroup>
+
+	<HiddenConfigGroup>
+		<Name>Gyro alignment matrix</Name>
+		<Description>Gyro calibration settings</Description>
+
+		<ConfigItem>
+			<Name>Mg1_1</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>49</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Mg1_2</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>50</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Mg1_3</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>51</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Mg2_1</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>52</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Mg2_2</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>53</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Mg2_3</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>54</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Mg3_1</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>55</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Mg3_2</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>56</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Mg3_3</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>57</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+	</HiddenConfigGroup>
+
+	<HiddenConfigGroup>
+		<Name>Accel alignment matrix</Name>
+		<Description>Accel calibration settings</Description>
+
+		<ConfigItem>
+			<Name>Ma1_1</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>82</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Ma1_2</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>83</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Ma1_3</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>84</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Ma2_1</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>85</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Ma2_2</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>86</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Ma2_3</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>87</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Ma3_1</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>88</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Ma3_2</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>89</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Ma3_3</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>90</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+	</HiddenConfigGroup>
+
+	<HiddenConfigGroup>
+		<Name>Mag alignment matrix</Name>
+		<Description>Mag calibration settings</Description>
+
+		<ConfigItem>
+			<Name>Mm1_1</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>115</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Mm1_2</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>116</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Mm1_3</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>117</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Mm2_1</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>118</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Mm2_2</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>119</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Mm2_3</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>120</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Mm3_1</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>121</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Mm3_2</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>122</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Mm3_3</Name>
+			<Description>Alignment matrix value</Description>
+			<Address>123</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+	</HiddenConfigGroup>
+
+	<HiddenConfigGroup>
+		<Name>Mag reference vector</Name>
+		<Description>Mag reference vector</Description>
+
+		<ConfigItem>
+			<Name>Ref X</Name>
+			<Description>Mag reference vector</Description>
+			<Address>124</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Ref Y</Name>
+			<Description>Mag reference vector</Description>
+			<Address>125</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+
+		<ConfigItem>
+			<Name>Ref Z</Name>
+			<Description>Mag reference vector</Description>
+			<Address>126</Address>
+			<Bits>32</Bits>
+			<Start>0</Start>
+			<DataType>float</DataType>
+			<Min></Min>
+			<Max></Max>
+			<ScaleFactor>1.0</ScaleFactor>
+		</ConfigItem>
+	</HiddenConfigGroup>
+	
+	<!-- ********************************************************* -->
+	<!-- Data Items 											   -->
+	<!-- ********************************************************* -->
+
+  <!-- HEALTH REGISTER -->
+  <DataGroup>
+    <Name>Health</Name>
+    <Description>Sensor Health Register</Description>
+
+    <!-- Satellite Count -->
+    <DataItem>
+      <Name>Satellites Used</Name>
+      <Description>Number of satellites used in the position/velocity solution</Description>
+      <Address>85</Address>
+      <Bits>6</Bits>
+      <Start>26</Start>
+      <DataType>uint16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- HDOP -->
+    <DataItem>
+      <Name>HDOP</Name>
+      <Description>Horizontal Dilution of Precision</Description>
+      <Address>85</Address>
+      <Bits>10</Bits>
+      <Start>16</Start>
+      <DataType>uint16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.1</ScaleFactor>
+    </DataItem>
+
+	  <!-- Satellites In View -->
+	  <DataItem>
+		  <Name>Satellites In View</Name>
+		  <Description>Number of satellites in view, not necessarilly used</Description>
+		  <Address>85</Address>
+		  <Bits>6</Bits>
+		  <Start>10</Start>
+		  <DataType>uint16</DataType>
+		  <Min></Min>
+		  <Max></Max>
+		  <ScaleFactor>1.0</ScaleFactor>
+	  </DataItem>
+
+    <!-- COM Overflow -->
+    <DataItem>
+      <Name>COM Overflow</Name>
+      <Description>This bit is set if the sensor is unable to transmit all requested data at requested rates</Description>
+      <Address>85</Address>
+      <Bits>1</Bits>
+      <Start>8</Start>
+      <DataType>binary</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+	  <!-- Accel -->
+	  <DataItem>
+		  <Name>Abs Pressure Fault</Name>
+		  <Description>Bit set if sensor fails to return good data</Description>
+		  <Address>85</Address>
+		  <Bits>1</Bits>
+		  <Start>4</Start>
+		  <DataType>binary</DataType>
+		  <Min></Min>
+		  <Max></Max>
+		  <ScaleFactor>1.0</ScaleFactor>
+	  </DataItem>
+	  
+    <!-- Accel -->
+    <DataItem>
+      <Name>Accel Fault</Name>
+      <Description>Bit set if sensor fails to return good data</Description>
+      <Address>85</Address>
+      <Bits>1</Bits>
+      <Start>3</Start>
+      <DataType>binary</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Gyro -->
+    <DataItem>
+      <Name>Gyro Fault</Name>
+      <Description>Bit set if sensor axis fails to return good data</Description>
+      <Address>85</Address>
+      <Bits>1</Bits>
+      <Start>2</Start>
+      <DataType>binary</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Mag -->
+    <DataItem>
+      <Name>Mag Fault</Name>
+      <Description>Bit set if sensor fails to return good data</Description>
+      <Address>85</Address>
+      <Bits>1</Bits>
+      <Start>1</Start>
+      <DataType>binary</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- GPS -->
+    <DataItem>
+      <Name>GPS Fault</Name>
+      <Description>Bit set if GPS fails to communicate properly</Description>
+      <Address>85</Address>
+      <Bits>1</Bits>
+      <Start>0</Start>
+      <DataType>binary</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+  </DataGroup>
+
+  <!-- RAW AND PROCESSED GYRO DATA -->
+  <DataGroup>
+    <Name>Gyro Data</Name>
+    <Description>Data from rate gyros</Description>
+
+    <!-- Raw X -->
+    <DataItem>
+      <Name>Raw X Gyro</Name>
+      <Description>Raw (unprocessed) data from x-axis rate gyro</Description>
+      <Address>86</Address>
+      <Bits>16</Bits>
+      <Start>16</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Raw Y -->
+    <DataItem>
+      <Name>Raw Y Gyro</Name>
+      <Description>Raw (unprocessed) data from y-axis rate gyro</Description>
+      <Address>86</Address>
+      <Bits>16</Bits>
+      <Start>0</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Raw Z -->
+    <DataItem>
+      <Name>Raw Z Gyro</Name>
+      <Description>Raw (unprocessed) data from z-axis rate gyro</Description>
+      <Address>87</Address>
+      <Bits>16</Bits>
+      <Start>16</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Gyro time -->
+    <DataItem>
+      <Name>Gyro raw time</Name>
+      <Description>Time at which gyro data was measured</Description>
+      <Address>88</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Processed X -->
+    <DataItem>
+      <Name>Processed X Gyro</Name>
+      <Description>Processed data from x-axis rate gyro (biases subtracted, scale factors and alignment compensation applied)</Description>
+      <Address>100</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Processed Y -->
+    <DataItem>
+      <Name>Processed Y Gyro</Name>
+      <Description>Processed data from y-axis rate gyro (biases subtracted, scale factors and alignment compensation applied)</Description>
+      <Address>101</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Processed Z -->
+    <DataItem>
+      <Name>Processed Z Gyro</Name>
+      <Description>Processed data from z-axis rate gyro (biases subtracted, scale factors and alignment compensation applied)</Description>
+      <Address>102</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Gyro time -->
+    <DataItem>
+      <Name>Gyro proc time</Name>
+      <Description>Time at which gyro data was measured (equivalent to gyro raw time)</Description>
+      <Address>103</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Gyro temperature -->
+    <DataItem>
+      <Name>Raw gyro temperature</Name>
+      <Description>Raw temperature reported by gyro temperature sensor</Description>
+      <Address>97</Address>
+      <Bits>8</Bits>
+      <Start>12</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Processed gyro temperature -->
+    <DataItem>
+      <Name>Processed gyro temperature</Name>
+      <Description>Processed temperature reported by gyro temperature sensor</Description>
+      <Address>114</Address>
+      <Bits>16</Bits>
+      <Start>0</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.00305175781</ScaleFactor>
+    </DataItem>
+  </DataGroup>
+
+  <!-- RAW AND PROCESSED ACCELEROMETER DATA -->
+  <DataGroup>
+    <Name>Accel Data</Name>
+    <Description>Data from accelerometers</Description>
+
+    <!-- Raw X -->
+    <DataItem>
+      <Name>Raw X Accel</Name>
+      <Description>Raw (unprocessed) data from x-axis accelerometer</Description>
+      <Address>89</Address>
+      <Bits>16</Bits>
+      <Start>16</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Raw Y -->
+    <DataItem>
+      <Name>Raw Y Accel</Name>
+      <Description>Raw (unprocessed) data from y-axis accelerometer</Description>
+      <Address>89</Address>
+      <Bits>16</Bits>
+      <Start>0</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Raw Z -->
+    <DataItem>
+      <Name>Raw Z Accel</Name>
+      <Description>Raw (unprocessed) data from z-axis accelerometer</Description>
+      <Address>90</Address>
+      <Bits>16</Bits>
+      <Start>16</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Accel time -->
+    <DataItem>
+      <Name>Accel raw time</Name>
+      <Description>Time at which accel data was measured</Description>
+      <Address>91</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Processed X -->
+    <DataItem>
+      <Name>Processed X Accel</Name>
+      <Description>Processed data from x-axis accelerometer (biases subtracted, scale factors and alignment compensation applied)</Description>
+      <Address>104</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Processed Y -->
+    <DataItem>
+      <Name>Processed Y Accel</Name>
+      <Description>Processed data from y-axis accelerometer (biases subtracted, scale factors and alignment compensation applied)</Description>
+      <Address>105</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Processed Z -->
+    <DataItem>
+      <Name>Processed Z Accel</Name>
+      <Description>Processed data from z-axis accelerometer (biases subtracted, scale factors and alignment compensation applied)</Description>
+      <Address>106</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Accel time -->
+    <DataItem>
+      <Name>Accel proc time</Name>
+      <Description>Time at which accel data was measured (equivalent to accel raw time)</Description>
+      <Address>107</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Raw accel temperature -->
+    <DataItem>
+      <Name>Raw Accel Temperature</Name>
+      <Description>Accel Temperature</Description>
+      <Address>97</Address>
+      <Bits>12</Bits>
+      <Start>0</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Processed accel temperature -->
+    <DataItem>
+      <Name>Processed Accel Temperature</Name>
+      <Description>Accel Temperature</Description>
+      <Address>115</Address>
+      <Bits>16</Bits>
+      <Start>16</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.00305175781</ScaleFactor>
+    </DataItem>
+  </DataGroup>
+
+  <!-- RAW AND PROCESSED MAGNETOMETER DATA -->
+  <DataGroup>
+    <Name>Mag Data</Name>
+    <Description>Data from magnetometer</Description>
+
+    <!-- Raw X -->
+    <DataItem>
+      <Name>Raw X Mag</Name>
+      <Description>Raw (unprocessed) data from x-axis magnetometer</Description>
+      <Address>92</Address>
+      <Bits>16</Bits>
+      <Start>16</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Raw Y -->
+    <DataItem>
+      <Name>Raw Y Mag</Name>
+      <Description>Raw (unprocessed) data from y-axis magnetometer</Description>
+      <Address>92</Address>
+      <Bits>16</Bits>
+      <Start>0</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Raw Z -->
+    <DataItem>
+      <Name>Raw Z Mag</Name>
+      <Description>Raw (unprocessed) data from z-axis magnetometer</Description>
+      <Address>93</Address>
+      <Bits>16</Bits>
+      <Start>16</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Mag time -->
+    <DataItem>
+      <Name>Mag raw time</Name>
+      <Description>Time at which mag data was measured</Description>
+      <Address>94</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Processed X -->
+    <DataItem>
+      <Name>Processed X Mag</Name>
+      <Description>Processed data from x-axis magnetometer (biases subtracted, soft and hard iron compensation applied)</Description>
+      <Address>108</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Processed Y -->
+    <DataItem>
+      <Name>Processed Y Mag</Name>
+      <Description>Processed data from y-axis magnetometer (biases subtracted, soft and hard iron compensation applied)</Description>
+      <Address>109</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Processed Z -->
+    <DataItem>
+      <Name>Processed Z Mag</Name>
+      <Description>Processed data from z-axis magnetometer (biases subtracted, soft and hard iron compensation applied)</Description>
+      <Address>110</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Mag time -->
+    <DataItem>
+      <Name>Mag proc time</Name>
+      <Description>Time at which mag data was measured (equivalent to mag raw time)</Description>
+      <Address>111</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Raw mag temperature -->
+    <DataItem>
+      <Name>Raw Mag Temperature</Name>
+      <Description>Mag Temperature</Description>
+      <Address>97</Address>
+      <Bits>12</Bits>
+      <Start>0</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Processed mag temperature -->
+    <DataItem>
+      <Name>Processed Mag Temperature</Name>
+      <Description>Mag Temperature</Description>
+      <Address>115</Address>
+      <Bits>16</Bits>
+      <Start>16</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.00305175781</ScaleFactor>
+    </DataItem>
+  </DataGroup>
+
+  <DataGroup>
+    <Name>Pressure Data</Name>
+    <Description>Raw and processed barometric pressure data</Description>
+
+    <!-- Raw pressure data -->
+    <DataItem>
+      <Name>Raw Absolute Pressure</Name>
+      <Description>Raw (unprocessed) data from barometric pressure sensor</Description>
+      <Address>95</Address>
+      <Bits>24</Bits>
+      <Start>0</Start>
+      <DataType>int32</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Raw pressure time -->
+    <DataItem>
+      <Name>Raw Absolute Pressure Time</Name>
+      <Description>Time at which raw (unprocessed) data was received</Description>
+      <Address>96</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Processed pressure data -->
+    <DataItem>
+      <Name>Processed Absolute Pressure</Name>
+      <Description>Processed data from barometric pressure sensor</Description>
+      <Address>112</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Processed pressure time -->
+    <DataItem>
+      <Name>Processed Absolute Pressure Time</Name>
+      <Description>Time at which processed data was received</Description>
+      <Address>113</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Raw pressure temperature -->
+    <DataItem>
+      <Name>Raw Pressure Temperature</Name>
+      <Description>Pressure Temperature</Description>
+      <Address>98</Address>
+      <Bits>16</Bits>
+      <Start>0</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Processed pressure temperature -->
+    <DataItem>
+      <Name>Processed Pressure Temperature</Name>
+      <Description>Pressure Temperature</Description>
+      <Address>115</Address>
+      <Bits>16</Bits>
+      <Start>0</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.00305175781</ScaleFactor>
+    </DataItem>
+  </DataGroup>
+
+  <DataGroup>
+    <Name>Temperature Data</Name>
+    <Description>Data from all temperature sensors on the board</Description>
+
+    <!-- Board temperature -->
+    <DataItem>
+      <Name>Raw board temperature</Name>
+      <Description>Raw temperature reported by onboard temperature sensor</Description>
+      <Address>97</Address>
+      <Bits>12</Bits>
+      <Start>20</Start>
+      <DataType>uint16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Processed board temperature -->
+    <DataItem>
+      <Name>Processed board temperature</Name>
+      <Description>Processed temperature reported by onboard temperature sensor</Description>
+      <Address>114</Address>
+      <Bits>16</Bits>
+      <Start>16</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.00305175781</ScaleFactor>
+    </DataItem>
+
+    <!-- Gyro temperature -->
+    <DataItem>
+      <Name>Raw gyro temperature</Name>
+      <Description>Raw temperature reported by gyro temperature sensor</Description>
+      <Address>97</Address>
+      <Bits>8</Bits>
+      <Start>12</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Processed gyro temperature -->
+    <DataItem>
+      <Name>Processed gyro temperature</Name>
+      <Description>Processed temperature reported by gyro temperature sensor</Description>
+      <Address>114</Address>
+      <Bits>16</Bits>
+      <Start>0</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.00305175781</ScaleFactor>
+    </DataItem>
+
+    <!-- Raw mag temperature -->
+    <DataItem>
+      <Name>Raw Mag/Accel Temperature</Name>
+      <Description>Mag Temperature</Description>
+      <Address>97</Address>
+      <Bits>12</Bits>
+      <Start>0</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Processed mag temperature -->
+    <DataItem>
+      <Name>Processed Mag/Accel Temperature</Name>
+      <Description>Mag Temperature</Description>
+      <Address>115</Address>
+      <Bits>16</Bits>
+      <Start>16</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.00305175781</ScaleFactor>
+    </DataItem>
+
+    <!-- Raw pressure temperature -->
+    <DataItem>
+      <Name>Raw Pressure Temperature</Name>
+      <Description>Pressure Temperature</Description>
+      <Address>98</Address>
+      <Bits>16</Bits>
+      <Start>0</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Processed pressure temperature -->
+    <DataItem>
+      <Name>Processed Pressure Temperature</Name>
+      <Description>Pressure Temperature</Description>
+      <Address>115</Address>
+      <Bits>16</Bits>
+      <Start>0</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.00305175781</ScaleFactor>
+    </DataItem>
+
+  </DataGroup>
+
+  <!-- QUATERNIONS -->
+  <DataGroup>
+    <Name>Quaternion</Name>
+    <Description>Quaternion Estimate</Description>
+
+    <DataItem>
+      <Name>a</Name>
+      <Description>First quaternion component</Description>
+      <Address>117</Address>
+      <Bits>16</Bits>
+      <Start>16</Start>
+      <DataType>int16</DataType>
+      <Min>-1.0</Min>
+      <Max>1.0</Max>
+      <ScaleFactor>0.0000335693</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>b</Name>
+      <Description>Second quaternion component</Description>
+      <Address>117</Address>
+      <Bits>16</Bits>
+      <Start>0</Start>
+      <DataType>int16</DataType>
+      <Min>-1.0</Min>
+      <Max>1.0</Max>
+      <ScaleFactor>0.0000335693</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>c</Name>
+      <Description>Third quaternion component</Description>
+      <Address>118</Address>
+      <Bits>16</Bits>
+      <Start>16</Start>
+      <DataType>int16</DataType>
+      <Min>-1.0</Min>
+      <Max>1.0</Max>
+      <ScaleFactor>0.0000335693</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>d</Name>
+      <Description>Fourth quaternion component</Description>
+      <Address>118</Address>
+      <Bits>16</Bits>
+      <Start>0</Start>
+      <DataType>int16</DataType>
+      <Min>-1.0</Min>
+      <Max>1.0</Max>
+      <ScaleFactor>0.0000335693</ScaleFactor>
+    </DataItem>
+
+    <!-- Quaternion time -->
+    <DataItem>
+      <Name>Quaternion time</Name>
+      <Description>Time at which angle occured</Description>
+      <Address>119</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+  </DataGroup>
+
+  <!-- Euler Angles -->
+  <DataGroup>
+    <Name>Euler Angles</Name>
+    <Description>Euler Angle Outputs</Description>
+
+    <DataItem>
+      <Name>Roll</Name>
+      <Description>Roll Angle in Degrees</Description>
+      <Address>120</Address>
+      <Bits>16</Bits>
+      <Start>16</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.01098632812</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>Pitch</Name>
+      <Description>Pitch Angle in Degrees</Description>
+      <Address>120</Address>
+      <Bits>16</Bits>
+      <Start>0</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.01098632812</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>Yaw</Name>
+      <Description>Yaw Angle in Degrees</Description>
+      <Address>121</Address>
+      <Bits>16</Bits>
+      <Start>16</Start>
+      <DataType>int16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.01098632812</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>Time</Name>
+      <Description>System time of current angle data</Description>
+      <Address>122</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+  </DataGroup>
+
+  <!-- Relative Position and Velocity -->
+  <DataGroup>
+    <Name>Relative Position/Velocity</Name>
+    <Description>Position and Velocity Outputs</Description>
+
+    <!-- Position -->
+    <DataItem>
+      <Name>Position North</Name>
+      <Description>Meters north of home position</Description>
+      <Address>123</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>Position East</Name>
+      <Description>Meters east of home position</Description>
+      <Address>124</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>Altitude</Name>
+      <Description>Meters above of home position</Description>
+      <Address>125</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>Time (Position)</Name>
+      <Description>Time of reported position data</Description>
+      <Address>126</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Velocity -->
+    <DataItem>
+      <Name>Velocity North</Name>
+      <Description>North velocity in m/s</Description>
+      <Address>127</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>Velocity East</Name>
+      <Description>East velocity in m/s</Description>
+      <Address>128</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>Velocity Up</Name>
+      <Description>Upward velocity in m/s</Description>
+      <Address>129</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>Time (Velocity)</Name>
+      <Description>Time of reported velocity data</Description>
+      <Address>130</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+  </DataGroup>
+
+  <!-- Raw GPS Data -->
+  <DataGroup>
+    <Name>GPS Position and Velocity</Name>
+    <Description>Raw GPS Outputs</Description>
+
+    <DataItem>
+      <Name>Latitude</Name>
+      <Description>Latitude in degrees</Description>
+      <Address>131</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>Longitude</Name>
+      <Description>Longitude in degrees</Description>
+      <Address>132</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>Altitude</Name>
+      <Description>Altitude in meters</Description>
+      <Address>133</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>Course</Name>
+      <Description>GPS Course in degrees</Description>
+      <Address>134</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>Speed</Name>
+      <Description>GPS Speed in m/s</Description>
+      <Address>135</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>GPS Time</Name>
+      <Description>Time of fix</Description>
+      <Address>136</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+  </DataGroup>
+
+  <!-- TODO: ADD SATELLITE SUMMARY DATA -->
+	
+  <!-- Estimated rate gyro biases -->
+  <DataGroup>
+    <Name>Estimated Rate Gyro Biases</Name>
+    <Description>Gyro bias filter output</Description>
+
+    <DataItem>
+      <Name>X-axis bias</Name>
+      <Description>Residual x-axis gyro bias detected by filter</Description>
+      <Address>143</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>Y-axis bias</Name>
+      <Description>Residual y-axis gyro bias detected by filter</Description>
+      <Address>144</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>Z-axis bias</Name>
+      <Description>Residual z-axis gyro bias detected by filter</Description>
+      <Address>145</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+  </DataGroup>
+  
+  <!-- Wind estimates -->
+  <DataGroup>
+    <Name>Wind Estimates</Name>
+    <Description>Filter estimated wind</Description>
+
+    <DataItem>
+      <Name>Wind North</Name>
+      <Description>Output of filter wind estimate</Description>
+      <Address>146</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>Wind East</Name>
+      <Description>Output of filter wind estimate</Description>
+      <Address>147</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>Wind Down</Name>
+      <Description>Output of filter wind estimate</Description>
+      <Address>148</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>float</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+  </DataGroup> 
+	
+	<!-- ********************************************************* -->
+	<!-- Registers												   -->
+	<!-- ********************************************************* -->
+	<Registers>
+		<!-- Config Registers -->
+		<Register address="0">
+			<Name>COM_SETTINGS</Name>
+			<Description>Communication settings</Description>
+		</Register>
+		
+		<Register address="1">
+			<Name>COMMUNICATION RATES 1</Name>
+			<Description>Communication settings</Description>
+		</Register>
+		
+		<Register address="2">
+			<Name>COMMUNICATION RATES 2</Name>
+			<Description>Communication settings</Description>
+		</Register>
+
+		<Register address="3">
+			<Name>COMMUNICATION RATES 3</Name>
+			<Description>Communication settings</Description>
+		</Register>
+
+		<Register address="4">
+			<Name>COMMUNICATION RATES 4</Name>
+			<Description>Communication settings</Description>
+		</Register>
+
+		<Register address="5">
+			<Name>COMMUNICATION RATES 5</Name>
+			<Description>Communication settings</Description>
+		</Register>
+
+		<Register address="6">
+		  <Name>COMMUNICATION RATES 6</Name>
+		  <Description>Communication settings</Description>
+		</Register>
+
+		<Register address="7">
+		  <Name>COMMUNICATION RATES 7</Name>
+		  <Description>Communication settings</Description>
+		</Register>
+
+		<Register address="8">
+			<Name>Filter Settings</Name>
+			<Description>Autopilot settings</Description>
+		</Register>
+
+		<Register address="9">
+			<Name>North Home Position</Name>
+			<Description>Home position</Description>
+		</Register>
+
+		<Register address="10">
+			<Name>East Home Position</Name>
+			<Description>Home position</Description>
+		</Register>
+
+		<Register address="11">
+			<Name>Home Altitude</Name>
+			<Description>Home position</Description>
+		</Register>
+
+		<Register address="12">
+		  <Name>Pressure Zero</Name>
+		  <Description>Pressure at altitude zero</Description>
+		</Register>
+
+		<Register address="13">
+		  <Name>Differential Pressure Zero</Name>
+		  <Description>Diffential pressure at airspeed zero</Description>
+		</Register>
+
+		<Register address="14">
+		  <Name>Gyro trim x</Name>
+		  <Description>X-axis gyro trim</Description>
+		</Register>
+
+		<Register address="15">
+		  <Name>Gyro trim y</Name>
+		  <Description>y-axis gyro trim</Description>
+		</Register>
+
+		<Register address="16">
+		  <Name>Gyro trim z</Name>
+		  <Description>Z-axis gyro trim</Description>
+		</Register>
+
+		<Register address="17">
+		  <Name>CREG_MAG_CAL1_1</Name>
+		  <Description>CREG_MAG_CAL1_1</Description>
+		</Register>
+
+		<Register address="18">
+		  <Name>CREG_MAG_CAL1_2</Name>
+		  <Description>CREG_MAG_CAL1_2</Description>
+		</Register>
+
+		<Register address="19">
+		  <Name>CREG_MAG_CAL1_3</Name>
+		  <Description>CREG_MAG_CAL1_3</Description>
+		</Register>
+
+		<Register address="20">
+		  <Name>CREG_MAG_CAL2_1</Name>
+		  <Description>CREG_MAG_CAL2_1</Description>
+		</Register>
+
+		<Register address="21">
+		  <Name>CREG_MAG_CAL2_2</Name>
+		  <Description>CREG_MAG_CAL2_2</Description>
+		</Register>
+
+		<Register address="22">
+		  <Name>CREG_MAG_CAL2_3</Name>
+		  <Description>CREG_MAG_CAL2_3</Description>
+		</Register>
+
+		<Register address="23">
+		  <Name>CREG_MAG_CAL3_1</Name>
+		  <Description>CREG_MAG_CAL3_1</Description>
+		</Register>
+
+		<Register address="24">
+		  <Name>CREG_MAG_CAL3_2</Name>
+		  <Description>CREG_MAG_CAL3_2</Description>
+		</Register>
+
+		<Register address="25">
+		  <Name>CREG_MAG_CAL3_3</Name>
+		  <Description>CREG_MAG_CAL3_3</Description>
+		</Register>
+
+		<Register address="26">
+		  <Name>CREG_MAG_BIAS_X</Name>
+		  <Description>CREG_MAG_BIAS_X</Description>
+		</Register>
+
+		<Register address="27">
+		  <Name>CREG_MAG_BIAS_Y</Name>
+		  <Description>CREG_MAG_BIAS_Y</Description>
+		</Register>
+
+		<Register address="28">
+		  <Name>CREG_MAG_BIAS_Z</Name>
+		  <Description>CREG_MAG_BIAS_Z</Description>
+		</Register>
+
+		<!-- Data Registers -->
+		<Register address="85">
+			<Name>HEALTH</Name>
+			<Description>Status register</Description>
+		</Register>
+		
+		<!-- Gyro Raw X -->
+		<Register address="86">
+			<Name>GYRO_RAW_XY</Name>
+			<Description>Raw X,Y gyro</Description>
+		</Register>
+		
+		<!-- Gyro Raw Y -->
+		<Register address="87">
+			<Name>GYRO_RAW_Z</Name>
+			<Description>Raw Z gyro</Description>
+		</Register>
+		
+		<!-- Gyro Time -->
+		<Register address="88">
+			<Name>GYRO_TIME</Name>
+			<Description>Gyro time</Description>
+		</Register>
+		
+		<!-- Accel Raw X/Y -->
+		<Register address="89">
+			<Name>ACCEL_RAW_XY</Name>
+			<Description>Raw X and Y accel data</Description>
+		</Register>
+		
+		<!-- Accel Raw Z -->
+		<Register address="90">
+			<Name>ACCEL_RAW_Z</Name>
+			<Description>Raw Z accel data</Description>
+		</Register>
+		
+		<!-- Accel time -->
+		<Register address="91">
+			<Name>ACCEL_TIME</Name>
+			<Description>Time that raw accelerometer data was acquired</Description>
+		</Register>
+		
+		<!-- Mag Raw X/Y -->
+		<Register address="92">
+			<Name>MAG_RAW_XY</Name>
+			<Description>Raw X and Y mag data</Description>
+		</Register>
+		
+		<!-- Mag Raw Z  -->
+		<Register address="93">
+			<Name>MAG_RAW_Z</Name>
+			<Description>Raw Z mag data and time</Description>
+		</Register>
+		
+		<!-- Mag Raw time  -->
+		<Register address="94">
+			<Name>MAG_RAW_TIME</Name>
+			<Description>Time that raw magnetometer data was received</Description>
+		</Register>
+
+		<!-- Absolute pressure raw  -->
+		<Register address="95">
+		  <Name>PRESSURE_RAW</Name>
+		  <Description>Raw pressure data</Description>
+		</Register>
+
+		<!-- Absolute pressure raw  -->
+		<Register address="96">
+		  <Name>PRESSURE_TIME</Name>
+		  <Description>Raw pressure time</Description>
+		</Register>
+		
+		<!-- Board temperature -->
+		<Register address="97">
+			<Name>TEMPERATURE1</Name>
+			<Description>Board temperature</Description>
+		</Register>
+
+		<!-- Board temperature -->
+		<Register address="98">
+		  <Name>TEMPERATURE2</Name>
+		  <Description>Board temperature</Description>
+		</Register>
+
+		<!-- Board temperature time -->
+		<Register address="99">
+		  <Name>TEMPERATURE_TIME</Name>
+		  <Description>Board temperature time</Description>
+		</Register>
+		
+		<!-- Gyro Proc X -->
+		<Register address="100">
+			<Name>GYRO_PROC_X</Name>
+			<Description>Processed X gyro data</Description>
+		</Register>
+		
+		<!-- Gyro Proc Y -->
+		<Register address="101">
+			<Name>GYRO_PROC_Y</Name>
+			<Description>Processed X gyro data</Description>
+		</Register>
+		
+		<!-- Gyro Proc Z -->
+		<Register address="102">
+			<Name>GYRO_PROC_Z</Name>
+			<Description>Processed Z gyro data</Description>
+		</Register>
+		
+		<!-- Gyro time -->
+		<Register address="103">
+			<Name>GYRO_PROC_TIME</Name>
+			<Description>Time at which processed gyro data was received</Description>
+		</Register>
+		
+		<!-- Accel Proc X -->
+		<Register address="104">
+			<Name>ACCEL_PROC_X</Name>
+			<Description>Processed X accel data</Description>
+		</Register>
+		
+		<!-- Accel Proc Y -->
+		<Register address="105">
+			<Name>ACCEL_PROC_Y</Name>
+			<Description>Processed Y accel data</Description>
+		</Register>
+		
+		<!-- Accel Proc Z -->
+		<Register address="106">
+			<Name>ACCEL_PROC_Z</Name>
+			<Description>Processed Z accel data</Description>
+		</Register>
+		
+		<!-- Accel Time -->
+		<Register address="107">
+			<Name>ACCEL_PROC_TIME</Name>
+			<Description>Time at which accel data was received</Description>
+		</Register>
+		
+		<!-- Mag Proc X -->
+		<Register address="108">
+			<Name>MAG_PROC_X</Name>
+			<Description>Processed X mag data</Description>
+		</Register>
+		
+		<!-- Mag Proc Y -->
+		<Register address="109">
+			<Name>MAG_PROC_Y</Name>
+			<Description>Processed Y mag data</Description>
+		</Register>
+		
+		<!-- Mag Proc Z -->
+		<Register address="110">
+			<Name>MAG_RAW_Z</Name>
+			<Description>Processed Z mag data</Description>
+		</Register>
+		
+		<!-- Mag Time -->
+		<Register address="111">
+			<Name>MAG_PROC_TIME</Name>
+			<Description>Time at which mag data was received</Description>
+		</Register>
+
+		<!-- Processed absolute pressure -->
+		<Register address="112">
+		  <Name>PRESSURE_PROC</Name>
+		  <Description>Processed absolute pressure data</Description>
+		</Register>
+
+		<!-- Processed absolute pressure time -->
+		<Register address="113">
+		  <Name>PRESSURE_PROC_TIME</Name>
+		  <Description>Time of processed absolute pressure data</Description>
+		</Register>
+
+		<!-- Processed board temperature -->
+		<Register address="114">
+		  <Name>TEMPERATURE_PROC1</Name>
+		  <Description>Processed board temperature</Description>
+		</Register>
+
+		<!-- Processed board temperature -->
+		<Register address="115">
+		  <Name>TEMPERATURE_PROC2</Name>
+		  <Description>Processed board temperature</Description>
+		</Register>
+
+		<!-- Board temperature time -->
+		<Register address="116">
+		  <Name>TEMPERATURE_PROC_TIME</Name>
+		  <Description>Processed board temperature time</Description>
+		</Register>
+		
+		<!-- Quaternion A and B -->
+		<Register address="117">
+			<Name>QUAT_AB</Name>
+			<Description>Quaternion A and B</Description>
+		</Register>
+		
+		<!-- Quaternion C and D -->
+		<Register address="118">
+			<Name>QUAT_CD</Name>
+			<Description>Quaternion C and D</Description>
+		</Register>
+		
+		<!-- Quaternion time -->
+		<Register address="119">
+			<Name>QUAT_TIME</Name>
+			<Description>Quaternion time</Description>
+		</Register>
+		
+		<!-- Euler phi and theta -->
+		<Register address="120">
+			<Name>EULER_PHI_THETA</Name>
+			<Description>Euler Pitch and Roll</Description>
+		</Register>
+		
+		<!-- Euler psi -->
+		<Register address="121">
+			<Name>EULER_PSI</Name>
+			<Description>Euler Yaw</Description>
+		</Register>
+		
+		<!-- Euler angle time -->
+		<Register address="122">
+			<Name>EULER_TIME</Name>
+			<Description>Time at which Euler angle data was computed</Description>
+		</Register>
+		
+		<!-- Position north -->
+		<Register address="123">
+			<Name>POSITION_NORTH</Name>
+			<Description>North position</Description>
+		</Register>
+		
+		<!-- Position east -->
+		<Register address="124">
+			<Name>POSITION_EAST</Name>
+			<Description>East position</Description>
+		</Register>
+		
+		<!-- Altitude -->
+		<Register address="125">
+			<Name>POSITION_ALTITUDE</Name>
+			<Description>Altitude</Description>
+		</Register>
+		
+		<!-- Position time -->
+		<Register address="126">
+			<Name>POSITION_TIME</Name>
+			<Description>Position time</Description>
+		</Register>
+		
+		<!-- Velocity north -->
+		<Register address="127">
+			<Name>VELOCITY_NORTH</Name>
+			<Description>Velocity north</Description>
+		</Register>
+		
+		<!-- Velocity east -->
+		<Register address="128">
+			<Name>VELOCITY_EAST</Name>
+			<Description>Velocity east</Description>
+		</Register>
+		
+		<!-- Velocity up -->
+		<Register address="129">
+			<Name>VELOCITY_UP</Name>
+			<Description>Velocity up</Description>
+		</Register>
+		
+		<!-- Velocity time -->
+		<Register address="130">
+			<Name>VELOCITY_TIME</Name>
+			<Description>Velocity time</Description>
+		</Register>
+
+		<!-- GPS latitude -->
+		<Register address="131">
+		  <Name>GPS_LATITUDE</Name>
+		  <Description>GPS Latitude</Description>
+		</Register>
+
+		<!-- GPS longitude -->
+		<Register address="132">
+		  <Name>GPS_LONGITUDE</Name>
+		  <Description>GPS Longitude</Description>
+		</Register>
+
+		<!-- GPS altitude -->
+		<Register address="133">
+		  <Name>GPS_ALTITUDE</Name>
+		  <Description>GPS Altitude</Description>
+		</Register>
+
+		<!-- GPS course -->
+		<Register address="134">
+		  <Name>GPS_COURSE</Name>
+		  <Description>GPS Course</Description>
+		</Register>
+
+		<!-- GPS course -->
+		<Register address="135">
+		  <Name>GPS_SPEED</Name>
+		  <Description>GPS Speed</Description>
+		</Register>
+
+		<!-- GPS time -->
+		<Register address="136">
+		  <Name>GPS_TIME</Name>
+		  <Description>GPS Time</Description>
+		</Register>
+		
+		<!-- GPS satellites 1 and 2 -->
+		<Register address="137">
+			<Name>GPS_SATELLITES_12</Name>
+			<Description>GPS Satellite data 1 and 2</Description>
+		</Register>
+		
+		<!-- GPS satellites 3 and 4 -->
+		<Register address="138">
+			<Name>GPS_SATELLITES_34</Name>
+			<Description>GPS Satellite data 3 and 4</Description>
+		</Register>
+		
+		<!-- GPS satellites 5 and 6 -->
+		<Register address="139">
+			<Name>GPS_SATELLITES_56</Name>
+			<Description>GPS Satellite data 5 and 6</Description>
+		</Register>
+		
+		<!-- GPS satellites 7 and 8 -->
+		<Register address="140">
+			<Name>GPS_SATELLITES_78</Name>
+			<Description>GPS Satellite data 7 and 8</Description>
+		</Register>
+		
+		<!-- GPS satellites 9 and 10 -->
+		<Register address="141">
+			<Name>GPS_SATELLITES_910</Name>
+			<Description>GPS Satellite data 9 and 10</Description>
+		</Register>
+		
+		<!-- GPS satellites 11 and 12 -->
+		<Register address="142">
+			<Name>GPS_SATELLITES_1112</Name>
+			<Description>GPS Satellite data 11 and 12</Description>
+		</Register>
+
+		<!-- Estimated x gyro bias -->
+		<Register address="143">
+		  <Name>GYRO_BIAS_X</Name>
+		  <Description>X-Axis Gyro Bias</Description>
+		</Register>
+
+		<!-- Estimated y gyro bias -->
+		<Register address="144">
+		  <Name>GYRO_BIAS_Y</Name>
+		  <Description>Y-Axis Gyro Bias</Description>
+		</Register>
+
+		<!-- Estimated z gyro bias -->
+		<Register address="145">
+		  <Name>GYRO_BIAS_Z</Name>
+		  <Description>Z-Axis Gyro Bias</Description>
+		</Register>
+
+		<!-- Wind north -->
+		<Register address="146">
+		  <Name>WIND_N</Name>
+		  <Description>Wind North Speed</Description>
+		</Register>
+
+		<!-- Wind east -->
+		<Register address="147">
+		  <Name>WIND_E</Name>
+		  <Description>Wind East Speed</Description>
+		</Register>
+
+		<!-- Wind down -->
+		<Register address="148">
+		  <Name>WIND_D</Name>
+		  <Description>Wind Down Speed</Description>
+		</Register>
+		
+		
+		<!-- HIDDEN REGISTERS -->
+		<HiddenRegister address="0">
+			<Name>Gyro Variance</Name>
+			<Description>Noise setting for rate gyros</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="1">
+			<Name>Accel Variance</Name>
+			<Description>Noise setting for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="2">
+			<Name>Mag Variance</Name>
+			<Description>Noise setting for magnetometers</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="3">
+			<Name>GPS Course Variance</Name>
+			<Description>Noise setting for GPS course</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="4">
+			<Name>GPS Position Variance</Name>
+			<Description>Noise setting for GPS position</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="5">
+			<Name>GPS Velocity Variance</Name>
+			<Description>Noise setting for GPS velocity</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="6">
+			<Name>Absolute Pressure Variance</Name>
+			<Description>Noise setting for absolute pressure sensor</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="7">
+			<Name>Differential Pressure Variance</Name>
+			<Description>Noise setting for differential pressure sensor</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="8">
+			<Name>Psibar Variance</Name>
+			<Description>Noise setting for psibar</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="9">
+			<Name>Q_uvw</Name>
+			<Description>Noise setting for filter</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="10">
+			<Name>Q_quaternion</Name>
+			<Description>Noise setting for filter</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="11">
+			<Name>Q_GPS_position</Name>
+			<Description>Noise setting for filter</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="12">
+			<Name>Q_wind</Name>
+			<Description>Noise setting for filter</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="13">
+			<Name>Q_euler_angles</Name>
+			<Description>Noise setting for filter</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="14">
+			<Name>low_vg_accel_noise_factor</Name>
+			<Description>Noise setting for filter</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="15">
+			<Name>lpf_tau_airspeed</Name>
+			<Description>low-pass filter setting</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="16">
+			<Name>lpf_tau_groundspeed</Name>
+			<Description>low-pass filter setting</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="17">
+			<Name>lpf_tau_accel</Name>
+			<Description>low-pass filter setting</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="18">
+			<Name>lpf_tau_gyro</Name>
+			<Description>low-pass filter setting</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="19">
+			<Name>lpf_tau_mag</Name>
+			<Description>low-pass filter setting</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="20">
+			<Name>lpf_tau_abs_pressure</Name>
+			<Description>low-pass filter setting</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="21">
+			<Name>adc_raw_to_volts</Name>
+			<Description>ADC conversion to volts</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="22">
+			<Name>kPa_per_volt</Name>
+			<Description>Factor for conversion of pressure to volts</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="23">
+			<Name>rho</Name>
+			<Description>Factor for conversion of pressure to airspeed</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="24">
+			<Name>raw_to_mbar</Name>
+			<Description>Factor for conversion of absolute pressure to altitude</Description>
+		</HiddenRegister>
+
+		<!-- Rate gyro calibration -->
+		<HiddenRegister address="25">
+			<Name>Cgbx0</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="26">
+			<Name>Cgbx1</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="27">
+			<Name>Cgbx2</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="28">
+			<Name>Cgbx3</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="29">
+			<Name>Cgby0</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="30">
+			<Name>Cgby1</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="31">
+			<Name>Cgby2</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="32">
+			<Name>Cgby3</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="33">
+			<Name>Cgbz0</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="34">
+			<Name>Cgbz1</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="35">
+			<Name>Cgbz2</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="36">
+			<Name>Cgbz3</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="37">
+			<Name>Cgsx0</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="38">
+			<Name>Cgsx1</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="39">
+			<Name>Cgsx2</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="40">
+			<Name>Cgsx3</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="41">
+			<Name>Cgsy0</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="42">
+			<Name>Cgsy1</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="43">
+			<Name>Cgsy2</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="44">
+			<Name>Cgsy3</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="45">
+			<Name>Cgsz0</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="46">
+			<Name>Cgsz1</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="47">
+			<Name>Cgsz2</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="48">
+			<Name>Cgsz3</Name>
+			<Description>Conversion constant for rate gyro</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="49">
+			<Name>Mg1_1</Name>
+			<Description>Rate gyro alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="50">
+			<Name>Mg1_2</Name>
+			<Description>Rate gyro alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="51">
+			<Name>Mg1_3</Name>
+			<Description>Rate gyro alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="52">
+			<Name>Mg2_1</Name>
+			<Description>Rate gyro alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="53">
+			<Name>Mg2_2</Name>
+			<Description>Rate gyro alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="54">
+			<Name>Mg2_3</Name>
+			<Description>Rate gyro alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="55">
+			<Name>Mg3_1</Name>
+			<Description>Rate gyro alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="56">
+			<Name>Mg3_2</Name>
+			<Description>Rate gyro alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="57">
+			<Name>Mg3_3</Name>
+			<Description>Rate gyro alignment matrix</Description>
+		</HiddenRegister>
+
+		<!-- Accelerometer Calibration -->
+		<HiddenRegister address="58">
+			<Name>Cabx0</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="59">
+			<Name>Cabx1</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="60">
+			<Name>Cabx2</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="61">
+			<Name>Cabx3</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="62">
+			<Name>Caby0</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="63">
+			<Name>Caby1</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="64">
+			<Name>Caby2</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="65">
+			<Name>Caby3</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="66">
+			<Name>Cabz0</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="67">
+			<Name>Cabz1</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="68">
+			<Name>Cabz2</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="69">
+			<Name>Cabz3</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="70">
+			<Name>Casx0</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="71">
+			<Name>Casx1</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="72">
+			<Name>Casx2</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="73">
+			<Name>Casx3</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="74">
+			<Name>Casy0</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="75">
+			<Name>Casy1</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="76">
+			<Name>Casy2</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="77">
+			<Name>Casy3</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="78">
+			<Name>Casz0</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="79">
+			<Name>Casz1</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="80">
+			<Name>Casz2</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="81">
+			<Name>Casz3</Name>
+			<Description>Conversion constant for accelerometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="82">
+			<Name>Ma1_1</Name>
+			<Description>Accelerometer alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="83">
+			<Name>Ma1_2</Name>
+			<Description>Accelerometer alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="84">
+			<Name>Ma1_3</Name>
+			<Description>Accelerometer alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="85">
+			<Name>Ma2_1</Name>
+			<Description>Accelerometer alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="86">
+			<Name>Ma2_2</Name>
+			<Description>Accelerometer alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="87">
+			<Name>Ma2_3</Name>
+			<Description>Accelerometer alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="88">
+			<Name>Ma3_1</Name>
+			<Description>Accelerometer alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="89">
+			<Name>Ma3_2</Name>
+			<Description>Accelerometer alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="90">
+			<Name>Ma3_3</Name>
+			<Description>Accelerometer alignment matrix</Description>
+		</HiddenRegister>
+		
+		<!-- Magnetometer calibration -->
+		<HiddenRegister address="91">
+			<Name>Cmbx0</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="92">
+			<Name>Cmbx1</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="93">
+			<Name>Cmbx2</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="94">
+			<Name>Cmbx3</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="95">
+			<Name>Cmby0</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="96">
+			<Name>Cmby1</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="97">
+			<Name>Cmby2</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="98">
+			<Name>Cmby3</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="99">
+			<Name>Cmbz0</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="100">
+			<Name>Cmbz1</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="101">
+			<Name>Cmbz2</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="102">
+			<Name>Cmbz3</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="103">
+			<Name>Cmsx0</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="104">
+			<Name>Cmsx1</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="105">
+			<Name>Cmsx2</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="106">
+			<Name>Cmsx3</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="107">
+			<Name>Cmsy0</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="108">
+			<Name>Cmsy1</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="109">
+			<Name>Cmsy2</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="110">
+			<Name>Cmsy3</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="111">
+			<Name>Cmsz0</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="112">
+			<Name>Cmsz1</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="113">
+			<Name>Cmsz2</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="114">
+			<Name>Cmsz3</Name>
+			<Description>Conversion constant for magnetometer</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="115">
+			<Name>Mm1_1</Name>
+			<Description>Magnetometer alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="116">
+			<Name>Mm1_2</Name>
+			<Description>Magnetometer alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="117">
+			<Name>Mm1_3</Name>
+			<Description>Magnetometer alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="118">
+			<Name>Mm2_1</Name>
+			<Description>Magnetometer alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="119">
+			<Name>Mm2_2</Name>
+			<Description>Magnetometer alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="120">
+			<Name>Mm2_3</Name>
+			<Description>Magnetometer alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="121">
+			<Name>Mm3_1</Name>
+			<Description>Magnetometer alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="122">
+			<Name>Mm3_2</Name>
+			<Description>Magnetometer alignment matrix</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="123">
+			<Name>Mm3_3</Name>
+			<Description>Magnetometer alignment matrix</Description>
+		</HiddenRegister>
+
+		<!-- Magnetometer reference vector -->
+		<HiddenRegister address="124">
+			<Name>Mag reference vector x</Name>
+			<Description>Magnetometer reference vector component</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="125">
+			<Name>Mag reference vector y</Name>
+			<Description>Magnetometer reference vector component</Description>
+		</HiddenRegister>
+
+		<HiddenRegister address="126">
+			<Name>Mag reference vector z</Name>
+			<Description>Magnetometer reference vector component</Description>
+		</HiddenRegister>
+
+	</Registers>
+	
+	<Commands>
+		<Command>
+			<Name>Get Firmware Revision</Name>
+			<Description>Causes the sensor to transmit to the current firmware revision</Description>
+			<Address>170</Address>			
+		</Command>
+		
+		<Command>
+			<Name>Write To Flash</Name>
+			<Description>Causes the sensor to write all current configuration settings to FLASH</Description>
+			<Address>171</Address>			
+		</Command>		
+		
+		<Command>
+			<Name>Reset to Factory</Name>
+			<Description>Causes the UM6 to reload factory-default settings</Description>
+			<Address>172</Address>
+		</Command>
+
+		<Command>
+			<Name>Zero Rate Gyros</Name>
+			<Description>Trims the gyro zero settings</Description>
+			<Address>173</Address>
+		</Command>
+	
+		<Command>
+			<Name>Set Home Position</Name>
+			<Description>Sets the measured GPS position as position (0,0,0) for relative position reporting</Description>
+			<Address>174</Address>
+		</Command>	
+		
+		<Command>
+			<Name>Write to Factory</Name>
+			<Description>Causes the UM6 to save current configuration as the factory-default</Description>
+			<Address>175</Address>
+		</Command>
+
+		<Command>
+			<Name>Set Mag Reference Vector</Name>
+			<Description>Sets the current magnetometer vector as the reference vector</Description>
+			<Address>176</Address>
+		</Command>
+
+		<Command>
+			<Name>Reset EKF</Name>
+			<Description>Resets the onboard Kalman Filter</Description>
+			<Address>179</Address>
+		</Command>
+		
+		<Command>
+		  <Name>Zero Absolute Pressure</Name>
+		  <Description>Causes the sensor to consider the current pressure as zero altitude</Description>
+		  <Address>180</Address>
+		</Command>
+
+	</Commands>
+	
+</CHR_FIRMWARE>

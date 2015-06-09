@@ -1,0 +1,697 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CHR_FIRMWARE id="HP0A" name="Hydra Firmware rev. 1.0" description="Hydra Firmware rev. 1.0">
+  <!-- ********************************************************* -->
+  <!-- CONFIGURATION ITEMS -->
+  <!-- ********************************************************* -->
+  <ConfigGroup>
+    <Name>Output 1 Settings</Name>
+    <Description>Settings for supply 1</Description>
+
+    <!-- Target Voltage -->
+    <ConfigItem>
+      <Name>Target Output Voltage</Name>
+      <Description>Specifies what the software-controlled output voltage is in mV</Description>
+      <Address>0</Address>
+      <Bits>16</Bits>
+      <Start>0</Start>
+      <DataType>uint16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+
+    <!-- Maximum current -->
+    <ConfigItem>
+      <Name>Maximum Output Current</Name>
+      <Description>Specifies what the software-controlled output current limit is in mA</Description>
+      <Address>0</Address>
+      <Bits>12</Bits>
+      <Start>16</Start>
+      <DataType>uint16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+
+    <!-- Output Enabled -->
+    <ConfigItem>
+      <Name>Output Enabled</Name>
+      <Description>Specifies whether the supply is enabled</Description>
+      <Address>0</Address>
+      <Bits>1</Bits>
+      <Start>31</Start>
+      <DataType>en/dis</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+
+    <!-- Low-current Mode Enabled -->
+    <ConfigItem>
+      <Name>Low-current Mode Enabled</Name>
+      <Description>Specifies whether low-current, high-efficiency mode is enabled</Description>
+      <Address>0</Address>
+      <Bits>1</Bits>
+      <Start>30</Start>
+      <DataType>en/dis</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+
+  </ConfigGroup>
+
+  <ConfigGroup>
+    <Name>Output 2 Settings</Name>
+    <Description>Settings for supply 2</Description>
+
+    <!-- Target Voltage -->
+    <ConfigItem>
+      <Name>Target Output Voltage</Name>
+      <Description>Specifies what the software-controlled output voltage is in mV</Description>
+      <Address>1</Address>
+      <Bits>16</Bits>
+      <Start>0</Start>
+      <DataType>uint16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.001</ScaleFactor>
+    </ConfigItem>
+
+    <!-- Maximum current -->
+    <ConfigItem>
+      <Name>Maximum Output Current</Name>
+      <Description>Specifies what the software-controlled output current limit is in mA</Description>
+      <Address>1</Address>
+      <Bits>12</Bits>
+      <Start>16</Start>
+      <DataType>uint16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.001</ScaleFactor>
+    </ConfigItem>
+
+    <!-- Output Enabled -->
+    <ConfigItem>
+      <Name>Output Enabled</Name>
+      <Description>Specifies whether the supply is enabled</Description>
+      <Address>1</Address>
+      <Bits>1</Bits>
+      <Start>31</Start>
+      <DataType>en/dis</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+
+    <!-- Low-current Mode Enabled -->
+    <ConfigItem>
+      <Name>Low-current Mode Enabled</Name>
+      <Description>Specifies whether low-current, high-efficiency mode is enabled</Description>
+      <Address>1</Address>
+      <Bits>1</Bits>
+      <Start>30</Start>
+      <DataType>en/dis</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+  </ConfigGroup>
+
+  <ConfigGroup>
+    <Name>Output 3 Settings</Name>
+    <Description>Settings for supply 1</Description>
+
+    <!-- Target Voltage -->
+    <ConfigItem>
+      <Name>Target Output Voltage</Name>
+      <Description>Specifies what the software-controlled output voltage is in mV</Description>
+      <Address>2</Address>
+      <Bits>16</Bits>
+      <Start>0</Start>
+      <DataType>uint16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.001</ScaleFactor>
+    </ConfigItem>
+
+    <!-- Maximum current -->
+    <ConfigItem>
+      <Name>Maximum Output Current</Name>
+      <Description>Specifies what the software-controlled output current limit is in mA</Description>
+      <Address>2</Address>
+      <Bits>12</Bits>
+      <Start>16</Start>
+      <DataType>uint16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.001</ScaleFactor>
+    </ConfigItem>
+
+    <!-- Output Enabled -->
+    <ConfigItem>
+      <Name>Output Enabled</Name>
+      <Description>Specifies whether the supply is enabled</Description>
+      <Address>2</Address>
+      <Bits>1</Bits>
+      <Start>31</Start>
+      <DataType>en/dis</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+
+    <!-- Low-current Mode Enabled -->
+    <ConfigItem>
+      <Name>Low-current Mode Enabled</Name>
+      <Description>Specifies whether low-current, high-efficiency mode is enabled</Description>
+      <Address>2</Address>
+      <Bits>1</Bits>
+      <Start>30</Start>
+      <DataType>en/dis</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+  </ConfigGroup>
+
+  <ConfigGroup>
+    <Name>Input Cutoff Settings</Name>
+    <Description>Input Cutoff Settings</Description>
+
+    <!-- Target Voltage -->
+    <ConfigItem>
+      <Name>Cutoff Voltage Threshold</Name>
+      <Description>Specifies what the input voltage cutoff is in mV</Description>
+      <Address>3</Address>
+      <Bits>16</Bits>
+      <Start>0</Start>
+      <DataType>uint16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.001</ScaleFactor>
+    </ConfigItem>
+
+    <ConfigItem>
+      <Name>V1 Cutoff Override</Name>
+      <Description>Specifies whether cutoff override is enabled for the output</Description>
+      <Address>3</Address>
+      <Bits>1</Bits>
+      <Start>29</Start>
+      <DataType>en/dis</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+
+    <ConfigItem>
+      <Name>V2 Cutoff Override</Name>
+      <Description>Specifies whether cutoff override is enabled for the output</Description>
+      <Address>3</Address>
+      <Bits>1</Bits>
+      <Start>30</Start>
+      <DataType>en/dis</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+
+    <ConfigItem>
+      <Name>V3 Cutoff Override</Name>
+      <Description>Specifies whether cutoff override is enabled for the output</Description>
+      <Address>3</Address>
+      <Bits>1</Bits>
+      <Start>31</Start>
+      <DataType>en/dis</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+  </ConfigGroup>
+
+  <ConfigGroup>
+    <Name>Voltage Calibration</Name>
+    <Description>Coefficients for voltage calibration</Description>
+
+    <!-- Output voltage calibration coefficients -->
+    <ConfigItem>
+      <Name>Cal C1</Name>
+      <Description>Calibration coefficient</Description>
+      <Address>4</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>int32</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+
+    <ConfigItem>
+      <Name>Cal C2</Name>
+      <Description>Calibration coefficient</Description>
+      <Address>5</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>int32</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+
+    <ConfigItem>
+      <Name>Cal C3</Name>
+      <Description>Calibration coefficient</Description>
+      <Address>6</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>int32</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+
+    <!-- Output voltage calibration coefficients -->
+    <ConfigItem>
+      <Name>Cal C1</Name>
+      <Description>Calibration coefficient</Description>
+      <Address>7</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>int32</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+
+    <ConfigItem>
+      <Name>Cal C2</Name>
+      <Description>Calibration coefficient</Description>
+      <Address>8</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>int32</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+
+    <ConfigItem>
+      <Name>Cal C3</Name>
+      <Description>Calibration coefficient</Description>
+      <Address>9</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>int32</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+
+    <!-- Output voltage calibration coefficients -->
+    <ConfigItem>
+      <Name>Cal C1</Name>
+      <Description>Calibration coefficient</Description>
+      <Address>10</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>int32</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+
+    <ConfigItem>
+      <Name>Cal C2</Name>
+      <Description>Calibration coefficient</Description>
+      <Address>11</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>int32</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+
+    <ConfigItem>
+      <Name>Cal C3</Name>
+      <Description>Calibration coefficient</Description>
+      <Address>12</Address>
+      <Bits>32</Bits>
+      <Start>0</Start>
+      <DataType>int32</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </ConfigItem>
+
+  </ConfigGroup>
+
+  <!-- ********************************************************* -->
+  <!-- Data Items 											   -->
+  <!-- ********************************************************* -->
+
+  <!-- Output 1 Status -->
+  <DataGroup>
+    <Name>V1 Status</Name>
+    <Description>Output 1 Status</Description>
+
+    <DataItem>
+      <Name>Vout 1</Name>
+      <Description>Output Voltage</Description>
+      <Address>85</Address>
+      <Bits>16</Bits>
+      <Start>0</Start>
+      <DataType>uint16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.001</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>Iout 1</Name>
+      <Description>Output Current</Description>
+      <Address>85</Address>
+      <Bits>12</Bits>
+      <Start>16</Start>
+      <DataType>uint16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.001</ScaleFactor>
+    </DataItem>
+
+    <!-- CV Bit -->
+    <DataItem>
+      <Name>Supply 1 Mode CV</Name>
+      <Description>Bit is set if the supply is in CV mode</Description>
+      <Address>85</Address>
+      <Bits>1</Bits>
+      <Start>31</Start>
+      <DataType>binary</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- CC Bit -->
+    <DataItem>
+      <Name>Supply 1 Mode CC</Name>
+      <Description>Bit is set if the supply is in CC mode</Description>
+      <Address>85</Address>
+      <Bits>1</Bits>
+      <Start>30</Start>
+      <DataType>binary</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Fault Bits -->
+    <DataItem>
+      <Name>Supply 1 Fault</Name>
+      <Description>Bits set to indicate errors</Description>
+      <Address>85</Address>
+      <Bits>2</Bits>
+      <Start>28</Start>
+      <DataType>uint8</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+  </DataGroup>
+
+  <!-- Output 2 Status -->
+  <DataGroup>
+    <Name>V2 Status</Name>
+    <Description>Output 2 Status</Description>
+
+    <DataItem>
+      <Name>Vout 2</Name>
+      <Description>Output Voltage</Description>
+      <Address>86</Address>
+      <Bits>16</Bits>
+      <Start>0</Start>
+      <DataType>uint16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.001</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>Iout 2</Name>
+      <Description>Output Current</Description>
+      <Address>86</Address>
+      <Bits>12</Bits>
+      <Start>16</Start>
+      <DataType>uint16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.001</ScaleFactor>
+    </DataItem>
+
+    <!-- CV Bit -->
+    <DataItem>
+      <Name>Supply 2 Mode CV</Name>
+      <Description>Bit is set if the supply is in CV mode</Description>
+      <Address>86</Address>
+      <Bits>1</Bits>
+      <Start>31</Start>
+      <DataType>binary</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- CC Bit -->
+    <DataItem>
+      <Name>Supply 2 Mode CC</Name>
+      <Description>Bit is set if the supply is in CC mode</Description>
+      <Address>86</Address>
+      <Bits>1</Bits>
+      <Start>30</Start>
+      <DataType>binary</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Fault Bits -->
+    <DataItem>
+      <Name>Supply 2 Fault</Name>
+      <Description>Bits set to indicate errors</Description>
+      <Address>86</Address>
+      <Bits>2</Bits>
+      <Start>28</Start>
+      <DataType>uint8</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+  </DataGroup>
+
+  <!-- Output 3 Status -->
+  <DataGroup>
+    <Name>V3 Status</Name>
+    <Description>Output 3 Status</Description>
+
+    <DataItem>
+      <Name>Vout 3</Name>
+      <Description>Output Voltage</Description>
+      <Address>87</Address>
+      <Bits>16</Bits>
+      <Start>0</Start>
+      <DataType>uint16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.001</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>Iout 3</Name>
+      <Description>Output Current</Description>
+      <Address>87</Address>
+      <Bits>12</Bits>
+      <Start>16</Start>
+      <DataType>uint16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.001</ScaleFactor>
+    </DataItem>
+
+    <!-- CV Bit -->
+    <DataItem>
+      <Name>Supply 3 Mode CV</Name>
+      <Description>Bit is set if the supply is in CV mode</Description>
+      <Address>87</Address>
+      <Bits>1</Bits>
+      <Start>31</Start>
+      <DataType>binary</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- CC Bit -->
+    <DataItem>
+      <Name>Supply 3 Mode CC</Name>
+      <Description>Bit is set if the supply is in CC mode</Description>
+      <Address>87</Address>
+      <Bits>1</Bits>
+      <Start>30</Start>
+      <DataType>binary</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+    <!-- Fault Bits -->
+    <DataItem>
+      <Name>Supply 3 Fault</Name>
+      <Description>Bits set to indicate errors</Description>
+      <Address>87</Address>
+      <Bits>2</Bits>
+      <Start>28</Start>
+      <DataType>uint8</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+  </DataGroup>
+
+  <DataGroup>
+    <Name>Vin Status</Name>
+    <Description>Vin Status</Description>
+
+    <DataItem>
+      <Name>Vin</Name>
+      <Description>Input Voltage</Description>
+      <Address>88</Address>
+      <Bits>16</Bits>
+      <Start>0</Start>
+      <DataType>uint16</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>0.001</ScaleFactor>
+    </DataItem>
+
+    <DataItem>
+      <Name>Input Cutoff Active</Name>
+      <Description>Bit set to indicate that the input voltage cutoff condition has been met</Description>
+      <Address>88</Address>
+      <Bits>1</Bits>
+      <Start>31</Start>
+      <DataType>uint8</DataType>
+      <Min></Min>
+      <Max></Max>
+      <ScaleFactor>1.0</ScaleFactor>
+    </DataItem>
+
+  </DataGroup>
+
+  <!-- ********************************************************* -->
+  <!-- Registers												   -->
+  <!-- ********************************************************* -->
+  <Registers>
+    <!-- Config Registers -->
+    <Register address="0">
+      <Name>REG_V1_SETTINGS</Name>
+      <Description>V1 Settings</Description>
+    </Register>
+
+    <Register address="1">
+      <Name>REG_V2_SETTINGS</Name>
+      <Description>V2 Settings</Description>
+    </Register>
+
+    <Register address="2">
+      <Name>REG_V3_SETTINGS</Name>
+      <Description>V3 Settings</Description>
+    </Register>
+
+    <Register address="3">
+      <Name>REG_VIN_SETTINGS</Name>
+      <Description>Vin Settings</Description>
+    </Register>
+
+    <Register address="4">
+      <Name>REG_V1_C1</Name>
+      <Description>V1 Settings</Description>
+    </Register>
+
+    <Register address="5">
+      <Name>REG_V1_C2</Name>
+      <Description>V1 Settings</Description>
+    </Register>
+
+    <Register address="6">
+      <Name>REG_V1_C3</Name>
+      <Description>V3 Settings</Description>
+    </Register>
+
+    <Register address="7">
+      <Name>REG_V2_C1</Name>
+      <Description>V2 Settings</Description>
+    </Register>
+
+    <Register address="8">
+      <Name>REG_V2_C2</Name>
+      <Description>V2 Settings</Description>
+    </Register>
+
+    <Register address="9">
+      <Name>REG_V2_C3</Name>
+      <Description>V2 Settings</Description>
+    </Register>
+
+    <Register address="10">
+      <Name>REG_V3_C1</Name>
+      <Description>V2 Settings</Description>
+    </Register>
+
+    <Register address="11">
+      <Name>REG_V3_C2</Name>
+      <Description>V2 Settings</Description>
+    </Register>
+
+    <Register address="12">
+      <Name>REG_V3_C3</Name>
+      <Description>V2 Settings</Description>
+    </Register>
+
+    <!-- Data Registers -->
+    <Register address="85">
+      <Name>V1_STATUS</Name>
+      <Description>Status register</Description>
+    </Register>
+
+    <Register address="86">
+      <Name>V2_STATUS</Name>
+      <Description>Status register</Description>
+    </Register>
+
+    <Register address="87">
+      <Name>V3_STATUS</Name>
+      <Description>Status register</Description>
+    </Register>
+
+    <Register address="88">
+      <Name>VIN_STATUS</Name>
+      <Description>Vin status register</Description>
+    </Register>
+  </Registers>
+
+  <Commands>
+    <Command>
+      <Name>Get Firmware Revision</Name>
+      <Description>Causes the Hydra to transmit to the current firmware revision</Description>
+      <Address>170</Address>
+    </Command>
+
+    <Command>
+      <Name>Write To Flash</Name>
+      <Description>Causes the Hydra to write all current configuration settings to FLASH</Description>
+      <Address>171</Address>
+    </Command>
+  </Commands>
+
+</CHR_FIRMWARE>
