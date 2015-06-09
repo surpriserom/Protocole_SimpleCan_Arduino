@@ -41,3 +41,11 @@ http://savvymicrocontrollersolutions.com/arduino.php?article=adafruit-ultimate-g
 
 um6 capteur
 http://forum.arduino.cc/index.php?topic=108689.0
+https://www.pololu.com/product/1256/resources
+par spi http://forum.arduino.cc/index.php?topic=131645.0
+http://www.jayconsystems.com/forum/viewtopic.php?t=39
+http://www.elcanoproject.org/tutorial/lab-6-inu/
+
+um6 datasheet dans le pdf communication avec le capteur
+p21 ch 10.1.1UART Serial Packet Structure
+p23-26 ch 10.2. Example UART Communication
