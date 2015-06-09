@@ -1,3 +1,5 @@
+//#include <Servo.h>
+
 #define STATE_ZERO 0 
 #define STATE_S 1 
 #define STATE_SN 2 
