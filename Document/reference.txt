@@ -4,6 +4,7 @@ https://github.com/McNeight/CAN-Library
 https://github.com/dergraaf/avr-can-lib
 
 https://github.com/Seeed-Studio/CAN_BUS_Shield
+http://www.seeedstudio.com/wiki/CAN-BUS_Shield
 
 programmateur via arduino
 http://www.arduino.cc/en/Tutorial/ArduinoISP
@@ -27,8 +28,8 @@ http://forum.arduino.cc/index.php?topic=152145.0
 http://forum.arduino.cc/index.php?topic=248039.0
 http://forum.arduino.cc/index.php?topic=315402.0
 
+shield can
 http://bitstream24.com/arduino-controller-area-network-can-shield-with-microchip-mcp2515-controller/
-http://www.seeedstudio.com/wiki/CAN-BUS_Shield
 
 converstion int to char
 http://www.arduino-hacks.com/converting-integer-to-character-vice-versa/
