@@ -873,6 +873,48 @@ INT8U MCP_CAN::readMsgBufID(INT32U *ID, INT8U *len, INT8U buf[])
 }
 
 /*********************************************************************************************************
+** Function name:           readMsgBufCh
+** Descriptions:            read message buf return a char *
+*********************************************************************************************************/
+INT8U MCP_CAN::readMsgBufCh(INT8U *len, char buf[])
+{
+    INT8U  rc;
+    
+    rc = readMsg();
+    
+    if (rc == CAN_OK) {
+       *len = m_nDlc;
+       for(int i = 0; i<m_nDlc; i++) {
+         buf[i] = char(m_nDta[i]);
+       } 
+    } else {
+       	 *len = 0;
+    }
+    return rc;
+}
+
+/*********************************************************************************************************
+** Function name:           readMsgBufIDch
+** Descriptions:            read message buf and can bus source ID retrun  a char *
+*********************************************************************************************************/
+INT8U MCP_CAN::readMsgBufIDCh(INT32U *ID, INT8U *len, char buf[])
+{
+    INT8U rc;
+    rc = readMsg();
+
+    if (rc == CAN_OK) {
+       *len = m_nDlc;
+       *ID  = m_nID;
+       for(int i = 0; i<m_nDlc && i < MAX_CHAR_IN_MESSAGE; i++) {
+          buf[i] = char(m_nDta[i]);
+       }
+    } else {
+       *len = 0;
+    }
+    return rc;
+}
+
+/*********************************************************************************************************
 ** Function name:           checkReceive
 ** Descriptions:            check if got something
 *********************************************************************************************************/
@@ -938,3 +980,5 @@ INT8U MCP_CAN::isExtendedFrame(void)
 /*********************************************************************************************************
   END FILE
 *********************************************************************************************************/
+
+

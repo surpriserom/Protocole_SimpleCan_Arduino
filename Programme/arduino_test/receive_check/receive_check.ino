@@ -10,7 +10,6 @@
 // the cs pin of the version after v1.1 is default to D9
 // v0.9b and v1.0 is default D10
 const int SPI_CS_PIN = 9;
-
 const int led = 13;
 boolean state = false;
 

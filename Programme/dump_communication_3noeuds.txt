@@ -1,0 +1,62 @@
+MSG_GPRMC_LAT_LONG
+lat:48.40 long:-4.51
+MSG_GPRMC_VIT_DATE
+vitesse:0.45noeud, date:12/6/15
+MSG_IMU_PHI_THETA_PSI
+IMU phi:21 theta:10 psi:36
+MSG_GYRO_X_Y_Z
+GYRO x:146 y:36 z:-80
+MSG_IMU_PHI_THETA_PSI
+IMU phi:48 theta:4 psi:57
+MSG_GYRO_X_Y_Z
+GYRO x:-35 y:-29 z:58
+MSG_IMU_PHI_THETA_PSI
+IMU phi:5 theta:-1 psi:49
+MSG_GYRO_X_Y_Z
+GYRO x:-78 y:-30 z:-70
+MSG_GPRMC_LAT_LONG
+lat:48.40 long:-4.51
+MSG_GPRMC_VIT_DATE
+vitesse:0.77noeud, date:12/6/15
+MSG_IMU_PHI_THETA_PSI
+IMU phi:5 theta:-12 psi:15
+MSG_GYRO_X_Y_Z
+GYRO x:92 y:-13 z:-85
+MSG_IMU_PHI_THETA_PSI
+IMU phi:20 theta:-18 psi:41
+MSG_GYRO_X_Y_Z
+GYRO x:61 y:75 z:100
+MSG_IMU_PHI_THETA_PSI
+IMU phi:33 theta:4 psi:64
+MSG_GYRO_X_Y_Z
+GYRO x:34 y:73 z:0
+MSG_IMU_PHI_THETA_PSI
+IMU phi:37 theta:18 psi:79
+MSG_GYRO_X_Y_Z
+GYRO x:-40 y:61 z:15
+MSG_GPRMC_LAT_LONG
+lat:48.40 long:-4.51
+MSG_GPRMC_VIT_DATE
+vitesse:0.61noeud, date:12/6/15
+MSG_IMU_PHI_THETA_PSI
+IMU phi:-6 theta:9 psi:50
+MSG_GYRO_X_Y_Z
+GYRO x:-30 y:-84 z:-72
+MSG_IMU_PHI_THETA_PSI
+IMU phi:13 theta:-3 psi:48
+MSG_GYRO_X_Y_Z
+GYRO x:147 y:50 z:4
+MSG_IMU_PHI_THETA_PSI
+IMU phi:30 theta:6 psi:68
+MSG_GYRO_X_Y_Z
+GYRO x:-152 y:25 z:-16
+MSG_GPRMC_LAT_LONG
+lat:48.40 long:-4.51
+MSG_GPRMC_VIT_DATE
+vitesse:1.11noeud, date:12/6/15
+MSG_IMU_PHI_THETA_PSI
+IMU phi:-4 theta:3 psi:62
+MSG_GYRO_X_Y_Z
+GYRO x:0 y:-8 z:-21
+MSG_IMU_PHI_THETA_PSI
+IMU phi:7 theta:2 psi:56

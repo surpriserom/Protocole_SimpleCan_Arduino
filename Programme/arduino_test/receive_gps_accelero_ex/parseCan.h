@@ -39,7 +39,7 @@ class ParseCan
 		//convertie un int en 2 char
 		void intToUChar(unsigned char buff[], int offset, int val);
 		//convertie un float en 4 char
-		void foatToUChar(unsigned char buff[], int offset, float val);
+		void floatToUChar(unsigned char buff[], int offset, float val);
 		
 		//donne du gyroscope
 		int get_int_GYRO_X();

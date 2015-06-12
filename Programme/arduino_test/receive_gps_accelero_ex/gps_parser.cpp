@@ -3,6 +3,7 @@
  parser pour nema gps data
 */
 
+#include <stdlib.h>
 #include "gps_parser.h"
 
 GPS_PARSER::GPS_PARSER(boolean init)
@@ -33,9 +34,10 @@ GPS_PARSER::GPS_PARSER(boolean init)
 			  sentencePos ++;
 			  fieldPos = 0;
 			}
-			
-			switch(commaCount)
-			{
+			else
+                        {
+			  switch(commaCount)
+			  {
 				case 1: //heure fixe
 					if(fieldPos < 2)
 					{
@@ -45,13 +47,13 @@ GPS_PARSER::GPS_PARSER(boolean init)
 					{
 						if(fieldPos < 4)
 						{
-							gprmc->minute[fieldPos]= buffer[sentencePos];
+							gprmc->minute[fieldPos-2]= buffer[sentencePos];
 						}
 						else
 						{
 							if(fieldPos < 6)
 							{
-								gprmc->second[fieldPos]= buffer[sentencePos];
+								gprmc->second[fieldPos-4]= buffer[sentencePos];
 							}
 						}
 					}
@@ -71,7 +73,7 @@ GPS_PARSER::GPS_PARSER(boolean init)
 					{
 						if(fieldPos < 9)
 						{
-							gprmc->latMn[fieldPos]= buffer[sentencePos];
+							gprmc->latMn[fieldPos-2]= buffer[sentencePos];
 						}
 					}
 				break;
@@ -90,7 +92,7 @@ GPS_PARSER::GPS_PARSER(boolean init)
 					{
 						if(fieldPos < 10)
 						{
-							gprmc->longMn[fieldPos]= buffer[sentencePos];
+							gprmc->longMn[fieldPos-3]= buffer[sentencePos];
 						}
 					}
 				break;
@@ -115,26 +117,27 @@ GPS_PARSER::GPS_PARSER(boolean init)
 					{
 						if(fieldPos < 4)
 						{
-							gprmc->month[fieldPos]= buffer[sentencePos];
+							gprmc->month[fieldPos-2]= buffer[sentencePos];
 						}
 						else
 						{
 							if(fieldPos < 6)
 							{
-								gprmc->year[fieldPos]= buffer[sentencePos];
+								gprmc->year[fieldPos-4]= buffer[sentencePos];
 							}
 						}
 					}
 				break;
 				default:break;
-			}
-			fieldPos ++;
-			sentencePos ++;
-			//si l'on a récuperer toute les donners qui nous intéresse, on sort de la boucle
-			if(commaCount > 9)
-			{
-				break;
-			}
+        			}
+        			fieldPos ++;
+        			sentencePos ++;
+        			//si l'on a récuperer toute les donners qui nous intéresse, on sort de la boucle
+        			if(commaCount > 9)
+        			{
+        				break;
+        			}
+                      }
 		}
 	}
 
@@ -160,9 +163,10 @@ GPS_PARSER::GPS_PARSER(boolean init)
 			  sentencePos ++;
 			  fieldPos = 0;
 			}
-			
-			switch(commaCount)
-			{
+			else
+		        {
+        			switch(commaCount)
+        			{
 				case 1: //heure fixe
 					if(fieldPos < 2)
 					{
@@ -172,13 +176,13 @@ GPS_PARSER::GPS_PARSER(boolean init)
 					{
 						if(fieldPos < 4)
 						{
-							gpgga->minute[fieldPos]= buffer[sentencePos];
+							gpgga->minute[fieldPos-2]= buffer[sentencePos];
 						}
 						else
 						{
 							if(fieldPos < 6)
 							{
-								gpgga->second[fieldPos]= buffer[sentencePos];
+								gpgga->second[fieldPos-4]= buffer[sentencePos];
 							}
 						}
 					}
@@ -192,7 +196,7 @@ GPS_PARSER::GPS_PARSER(boolean init)
 					{
 						if(fieldPos < 9)
 						{
-							gpgga->latMn[fieldPos]= buffer[sentencePos];
+							gpgga->latMn[fieldPos-2]= buffer[sentencePos];
 						}
 					}
 				break;
@@ -211,7 +215,7 @@ GPS_PARSER::GPS_PARSER(boolean init)
 					{
 						if(fieldPos < 10)
 						{
-							gpgga->longMn[fieldPos]= buffer[sentencePos];
+							gpgga->longMn[fieldPos-3]= buffer[sentencePos];
 						}
 					}
 				break;
@@ -246,14 +250,15 @@ GPS_PARSER::GPS_PARSER(boolean init)
 					}
 				break;
 				default:break;
-			}
-			fieldPos ++;
-			sentencePos ++;
-			//si l'on a récuperer toute les donners qui nous intéresse, on sort de la boucle
-			if(commaCount > 9)
-			{
-				break;
-			}
+        			}
+        			fieldPos ++;
+        			sentencePos ++;
+        			//si l'on a récuperer toute les donners qui nous intéresse, on sort de la boucle
+        			if(commaCount > 9)
+        			{
+        				break;
+        			}
+                        }
 		}
 	}
 		
@@ -263,19 +268,22 @@ GPS_PARSER::GPS_PARSER(boolean init)
 		unsigned char sentencePos = 0;
 		unsigned char fieldPos = 0;
 		unsigned char commaCount = 0;
-		while (sentencePos < NMEALenght && commaCount > fieldNb && buffIn[sentencePos] != '\n')
+		while (sentencePos < NMEALenght && commaCount >= fieldNb && buffIn[sentencePos] != '\n')
 		{
 			if (buffIn[sentencePos] == ',')
 			{
 			  commaCount ++;
 			  sentencePos ++;
 			}
-			if (commaCount == fieldNb)
-			{
-			  field[fieldPos] = buffIn[sentencePos];
-			  fieldPos ++;
-			}
-			sentencePos ++;
+                        else
+        		{
+                            if (commaCount == fieldNb)
+        		    {
+        			  field[fieldPos] = buffIn[sentencePos];
+        			  fieldPos ++;
+        		    }
+			    sentencePos ++;
+                        }
 		}
 		field[fieldPos] = '\0';
 	}
@@ -304,3 +312,32 @@ GPS_PARSER::GPS_PARSER(boolean init)
 		return (strcmp(temp,"$GPGGA")==0);
 	}
 
+void GPS_PARSER::convertGprmcFrame(GPRMC_frame *frame, GPRMC_data *data)
+{
+	float degree;
+	float minute;
+	//si les donnees ne sont pas valide on quite la fonction, les valeur par defaut de data étant a 0
+	if(! (data->valide = (frame->valide == 'A')))
+		return;
+	
+	degree = atof (frame->latDeg);
+	minute = atof (frame->latMn);
+	data->latitude = (frame->latInd == 'N' ? degree + minute/60.0 : 0 - (degree + minute/60));
+	
+	degree = atof (frame->longDeg);
+	minute = atof (frame->longMn);
+	data->longitude = (frame->longInd == 'E' ? degree + minute/60.0 : 0 - (degree + minute/60)); 
+	//date
+	data->day = ((frame->day[0] - '0') * 10)+(frame->day[1] - '0');
+	data->month = ((frame->month[0] - '0') * 10)+(frame->month[1] - '0');
+	data->year = ((frame->year[0] - '0') * 10)+(frame->year[1] - '0');
+  
+  //time utc
+	data->hour = ((frame->hour[0] - '0')* 10)+(frame->hour[1] - '0');
+	data->minute = ((frame->minute[0] - '0')* 10)+(frame->minute[1] - '0');
+	data->second = ((frame->second[0] - '0')* 10)+(frame->second[1] - '0');
+  //vittesse en noeud
+	data->speed = atof(frame->speed);
+	
+	return;
+}

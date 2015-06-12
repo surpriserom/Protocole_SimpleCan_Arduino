@@ -22,6 +22,8 @@ http://fr.wikipedia.org/wiki/NMEA_0183
 nema presentation
 http://www.prism-astro.com/fr/aide/Menu-Telescope/TELESCOPE-GPS/renseignements.htm
 
+nmea convert NMEA latitude longitude to other value
+http://home.online.no/~sigurdhu/Deg_formats.htm
 
 can_programming
 http://forum.arduino.cc/index.php?topic=152145.0

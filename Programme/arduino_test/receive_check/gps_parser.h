@@ -50,6 +50,28 @@ typedef struct {
   char speed[6] = "00000"; //vitesse en noeud
   }GPRMC_frame;
   
+  //valeur a 0 par defaut au cas ou la trame est non valide
+typedef struct {
+  bool valide; 
+  //latitude data
+  float latitude=0.0;
+  
+  //longitude data
+  float longitude=0.0;
+  
+  //date
+  char day = 0;
+  char month = 0;
+  char year = 0;
+  
+  //time utc
+  char hour= 0;
+  char minute = 0;
+  char second= 0;
+  
+  float speed = 0; //vitesse en noeud
+  }GPRMC_data;
+  
 /*
 *  $GPGGA,123519,4807.038,N,01131.324,E,1,08,0.9,545.4,M,46.9,M, , *42
 *
@@ -99,12 +121,15 @@ typedef struct {
 class GPS_PARSER
 {
 	public:
-                GPS_PARSER(boolean init);
+        GPS_PARSER(boolean init);
 		void parseGPRMC(const char buffer[], GPRMC_frame *data); //parse a gprmc sentence
 		void parseGPGGA(const char buffer[], GPGGA_frame *data);	//parse a gpgga sentence
 		void getNemaField(const char buffIn[], char field[], const unsigned char fieldNb); // get the field number from NMEA sentence
 		boolean isGPRMC(const char buffer[]);
 		boolean isGPGGA(const char buffer[]);
+		
+		void convertGprmcFrame(GPRMC_frame *data, GPRMC_data *val);
+		
         private:
                 boolean init;
 };
