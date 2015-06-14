@@ -1,3 +1,5 @@
+Liens vers les librairies et les documents utilisés pour conmprendre et réaliser le projet
+
 source git repo
 https://github.com/splashelec/splashelec
 https://github.com/McNeight/CAN-Library
