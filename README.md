@@ -15,7 +15,7 @@ La version du logiciel utilisé lors du développement est la 1.6.4.
 Les driver pour le programmateur USBtinyISP est dans le dossier **Programme**, ce dossier contient aussi le logiciel pour calibrer le capteur **UM6**, 
 pour l'utiliser il faut utiliser la carte Arduino comme passerelle port serie avec le programme **Programe_Test\Serial_read_write**
 
-###Basée sur me projet de splashelec 
+###Basée sur le projet de splashelec 
 voir le [wiki](http://wiki.splashelec.com/) et [github](https://github.com/splashelec/splashelec) de splashelec
 
 #### Lien vers les librairies CAN compatible MCP2515 trouver sur Github étudier lors du projet
@@ -32,9 +32,9 @@ Pour utiliser les librairies arduino realisé copier les dossiers dans le dossie
 La librairie du shield can disponible à [Seeed-Studio/CAN_BUS_Shield](https://github.com/Seeed-Studio/CAN_BUS_Shield) mais avec un dossier mis en ordre pour êtres copier dans le dossier librairies du logiciel Arduino
 
 ####GpsParser
-GpsParser permet de recuperer les  trames GPRMC et GPGGA du protocole NMEA 183 d'un gps
+GpsParser permet de recuperer les  trames **GPRMC** et **GPGGA** du protocole NMEA 183 d'un gps
 
-`GPRMC_frame` structure pour avoir les principales informations d'un champ **GPRMC**
+`GPRMC_frame` structure pour avoir les principales informations d'une trame **GPRMC**
 ```C
 typedef struct {
   char valide; 
@@ -62,7 +62,7 @@ typedef struct {
   }GPRMC_frame;
 ```
 
-`GPRMC_data` structure pour avoir les principales valeurs numérique d'un champ **GPRMC**
+`GPRMC_data` structure pour avoir les principales valeurs numérique d'une trame **GPRMC**
 ```C
 typedef struct {
   bool valide; 
@@ -86,7 +86,7 @@ typedef struct {
   }GPRMC_data;
 ```
 
-`GPGGA_frame` structure pour avoir les principales valeurs d'un champ **GPGGA**
+`GPGGA_frame` structure pour avoir les principales valeurs d'une trame **GPGGA**
 ```C
   typedef struct {
   char valide; 
@@ -114,9 +114,9 @@ typedef struct {
   }GPGGA_frame;
 ```
 
-fonction pour recuperer d'une trame NMEA un champ spécifique
+fonction pour recupérer d'une trame NMEA un champ spécifique
 ```C
-void getNemaField(const char buffIn[], char field[], const unsigned char fieldNb); // get the field number from NMEA sentence
+void getNemaField(const char buffIn[], char field[], const unsigned char fieldNb); 
 //buffIn la trame NMEA
 //field le champ récupérer
 //fieldNb la position dans la trame GPRMC du champ que l'on veut récupérer
@@ -130,30 +130,30 @@ boolean isGPRMC(const char buffer[]);
 
 fonction pour recupérer d'une trame NMEA une structure `GPRMC_frame`
 ```C
-void parseGPRMC(const char buffer[], GPRMC_frame *data); //parse a gprmc sentence
+void parseGPRMC(const char buffer[], GPRMC_frame *data);
 ```
 
 fonction pour converture une structure `GPRMC_frame` en structure `GPRMC_data`
 ```C
-void convertGprmcFrame(GPRMC_frame *frame, GPRMC_data *data); //convert GPRMC_frame to GPRMC_data
+void convertGprmcFrame(GPRMC_frame *frame, GPRMC_data *data);
 ```
 
-fonction qui test si la trame est une trame *GPGGA*
+fonction qui test si la trame est une trame **GPGGA**
 ```C
 boolean isGPGGA(const char buffer[]);
 ```
 
 fonction pour recupérer d'une trame NMEA une structure `GPGGA_frame`
 ```C
-void parseGPGGA(const char buffer[], GPGGA_frame *data);	//parse a gpgga sentence
+void parseGPGGA(const char buffer[], GPGGA_frame *data);
 ```
 
 ####ParseCan
-ParseCan contient plusieurs identifiants pour des message CAN et contient des fonctions pour convertir les `int` et les `float` en tableau de `unsigned char` et inversement pour envoyer ces donner sur le bus CAN
+ParseCan contient plusieurs identifiants pour des message CAN et contient des fonctions pour convertir les `int` et les `float` en tableau de `unsigned char` et inversement pour envoyer ces données et les lires sur le bus CAN
 
 liste des identifiants actuellement implémenter
 ```C
-#define MSG_GPRMC_LAT_LONG		0x40 //identifiant pour une tram avec la latitude et la longitude
+#define MSG_GPRMC_LAT_LONG		0x40 //identifiant pour une trame avec la latitude et la longitude
 #define MSG_GPRMC_VIT_DATE		0x41 //identifiant pour une trame avec la vitesse et la date_order
 #define MSG_GPGGA_ALT_PREC		0x42 //identifiant pour une trame avec l'altitude et la precision
 #define MSG_IMU_PHI_THETA_PSI 	0x43 //identifiant pour une trame avec Roll, pitch and yaw
