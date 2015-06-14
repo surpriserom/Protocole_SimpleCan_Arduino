@@ -5,9 +5,15 @@ Le projet a pour objectif de définir une sur couche du protocole CAN, appelée 
 L'approche devra être validée, au travers d'une application simple de visualisation et d'envoi de données via un PC, sur un matériel existant consistant en 5 noeuds : un permettant une connexion PC via USB, 
 un destiné au décodage de données propriétaires SeaTalk (Raymarine), deux destinés à du traitement de données NMEA (issues d'un GPS et d'une centrale Tactick) et le dernier portant une centrale inertielle.
 
-Les programmes pour les cartes texter sont disponible dans le dossier Programe_Test, pour le test du réseaux CAN avec 3 noeuds (interface USB, capteur UM6 et interface NMEA), 
+Les programmes pour les cartes testées sont disponible dans le dossier **Programe_Test**, pour le test du réseaux CAN avec 3 noeuds (interface USB, capteur UM6 et interface NMEA), 
 les programmes sont dans les dossiers **receive_gps_accelero_ex** pour l'interface USB, **send_nmea_GPS_ex** pour l'interface NMEA et **UM6_CAN_ex** pour le capteur UM6. 
+
 Le fichier **dump_communication_3noeuds.txt** est une copie de ce que donne la console quand les 3 noeuds sont connectés. 
+
+La version du logiciel utilisé lors du développement est la 1.6.4.
+
+Les driver pour le programmateur USBtinyISP est dans le dossier **Programme**, ce dossier contient aussi le logiciel pour calibrer le capteur **UM6**, 
+pour l'utiliser il faut utiliser la carte Arduino comme passerelle port serie avec le programme **Programe_Test\Serial_read_write**
 
 ###Basée sur me projet de splashelec 
 voir le [wiki](http://wiki.splashelec.com/) et [github](https://github.com/splashelec/splashelec) de splashelec
@@ -164,7 +170,7 @@ int ucharToInt(unsigned char buff[], int offset);
 ```
 
 fonction pour enregistrer un `float` dans un tableau de `unsigned char`
-```
+```C
 float ucharToFloat(unsigned char buff[], int offset);
 //buff tableau de char
 // offset position du msb

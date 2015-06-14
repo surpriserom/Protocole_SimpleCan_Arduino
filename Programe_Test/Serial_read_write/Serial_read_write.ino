@@ -1,4 +1,4 @@
-int baudRate = 9600;
+int baudRate = 115200;
 void setup() { 
 
  // initialize both serial ports: 
