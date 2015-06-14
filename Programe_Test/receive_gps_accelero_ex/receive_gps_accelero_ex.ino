@@ -25,7 +25,7 @@ void setup()
         ; // wait for Serial1 port to connect. Needed for Leonardo only
       }
       
-  //set the gps signal led
+  //set the test signal led
   pinMode(led, OUTPUT);
   digitalWrite(led, LOW);
 
