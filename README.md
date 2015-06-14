@@ -4,7 +4,9 @@ Le projet a pour objectif de définir une sur couche du protocole CAN, appelée 
 L'approche devra être validée, au travers d'une application simple de visualisation et d'envoi de données via un PC, sur un matériel existant consistant en 5 noeuds : un permettant une connexion PC via USB, 
 un destiné au décodage de données propriétaires SeaTalk (Raymarine), deux destinés à du traitement de données NMEA (issues d'un GPS et d'une centrale Tactick) et le dernier portant une centrale inertielle.
 
-Les programmes pour les cartes texter sont disponible dans lke dossier Programe_Test, pour le test du réseaux CAN avec 3 noeuds (interface USB, capteur UM6 et interface NMEA), les programmes sont dans les dossiers receive_gps_accelero_ex pour l'interface USB, send_nmea_GPS_ex pour l'interface NMEA et UM6_CAN_ex pour le capteur UM6. Le fichier dump_communication_3noeuds.txt est une copie de ce que donne la console quand les 3 noeuds sont connectés. 
+Les programmes pour les cartes texter sont disponible dans le dossier Programe_Test, pour le test du réseaux CAN avec 3 noeuds (interface USB, capteur UM6 et interface NMEA), 
+les programmes sont dans les dossiers **receive_gps_accelero_ex** pour l'interface USB, **send_nmea_GPS_ex** pour l'interface NMEA et **UM6_CAN_ex** pour le capteur UM6. 
+Le fichier **dump_communication_3noeuds.txt** est une copie de ce que donne la console quand les 3 noeuds sont connectés. 
 
 ###Basée sur me projet de splashelec 
 voir le [wiki](http://wiki.splashelec.com/) et [github](https://github.com/splashelec/splashelec) de splashelec
@@ -25,7 +27,7 @@ La librairie du shield can disponible à [Seeed-Studio/CAN_BUS_Shield](https://g
 ####GpsParser
 GpsParser permet de recuperer les  trames GPRMC et GPGGA du protocole NMEA 183 d'un gps
 
-`GPRMC_frame` structure pour avoir les principales informations d'un champ *GPRMC*
+`GPRMC_frame` structure pour avoir les principales informations d'un champ **GPRMC**
 ```
 typedef struct {
   char valide; 
@@ -53,7 +55,7 @@ typedef struct {
   }GPRMC_frame;
 ```
 
-`GPRMC_data` structure pour avoir les principales valeurs numérique d'un champ *GPRMC*
+`GPRMC_data` structure pour avoir les principales valeurs numérique d'un champ **GPRMC**
 ```
 typedef struct {
   bool valide; 
@@ -77,7 +79,7 @@ typedef struct {
   }GPRMC_data;
 ```
 
-`GPGGA_frame` structure pour avoir les principales valeurs d'un champ *GPGGA*
+`GPGGA_frame` structure pour avoir les principales valeurs d'un champ **GPGGA**
 ```
   typedef struct {
   char valide; 
@@ -113,7 +115,7 @@ void getNemaField(const char buffIn[], char field[], const unsigned char fieldNb
 *fieldNb* la position dans la trame GPRMC du champ que l'on veut récupérer
 ```
 
-fonction qui test si la trame est une trame `GPRMC`
+fonction qui test si la trame est une trame **GPRMC**
 ```
 boolean isGPRMC(const char buffer[]);
 *buffer* la trame NMEA
