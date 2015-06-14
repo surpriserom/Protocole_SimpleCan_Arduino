@@ -1,4 +1,5 @@
 ##Protocole SimpleCAN pour bus à base d'Arduino
+![Image of node](https://github.com/surpriserom/Protocole_SimpleCan_Arduino/blob/master/Document/image/5boxes.jpg)
 ###Description 
 Le projet a pour objectif de définir une sur couche du protocole CAN, appelée SimpleCAN, pour faire communiquer entre-eux un ensemble de noeuds composés de cartes Arduino associées à une interface CAN.
 L'approche devra être validée, au travers d'une application simple de visualisation et d'envoi de données via un PC, sur un matériel existant consistant en 5 noeuds : un permettant une connexion PC via USB, 
@@ -28,7 +29,7 @@ La librairie du shield can disponible à [Seeed-Studio/CAN_BUS_Shield](https://g
 GpsParser permet de recuperer les  trames GPRMC et GPGGA du protocole NMEA 183 d'un gps
 
 `GPRMC_frame` structure pour avoir les principales informations d'un champ **GPRMC**
-```
+```C
 typedef struct {
   char valide; 
   //latitude data
@@ -56,7 +57,7 @@ typedef struct {
 ```
 
 `GPRMC_data` structure pour avoir les principales valeurs numérique d'un champ **GPRMC**
-```
+```C
 typedef struct {
   bool valide; 
   //latitude data
@@ -80,7 +81,7 @@ typedef struct {
 ```
 
 `GPGGA_frame` structure pour avoir les principales valeurs d'un champ **GPGGA**
-```
+```C
   typedef struct {
   char valide; 
   //latitude data
@@ -108,36 +109,36 @@ typedef struct {
 ```
 
 fonction pour recuperer d'une trame NMEA un champ spécifique
-```
+```C
 void getNemaField(const char buffIn[], char field[], const unsigned char fieldNb); // get the field number from NMEA sentence
-*buffIn* la trame NMEA
-*field* le champ récupérer
-*fieldNb* la position dans la trame GPRMC du champ que l'on veut récupérer
+//buffIn la trame NMEA
+//field le champ récupérer
+//fieldNb la position dans la trame GPRMC du champ que l'on veut récupérer
 ```
 
 fonction qui test si la trame est une trame **GPRMC**
-```
+```C
 boolean isGPRMC(const char buffer[]);
-*buffer* la trame NMEA
+//buffer la trame NMEA
 ```
 
 fonction pour recupérer d'une trame NMEA une structure `GPRMC_frame`
-```
+```C
 void parseGPRMC(const char buffer[], GPRMC_frame *data); //parse a gprmc sentence
 ```
 
 fonction pour converture une structure `GPRMC_frame` en structure `GPRMC_data`
-```
+```C
 void convertGprmcFrame(GPRMC_frame *frame, GPRMC_data *data); //convert GPRMC_frame to GPRMC_data
 ```
 
 fonction qui test si la trame est une trame *GPGGA*
-```
+```C
 boolean isGPGGA(const char buffer[]);
 ```
 
 fonction pour recupérer d'une trame NMEA une structure `GPGGA_frame`
-```
+```C
 void parseGPGGA(const char buffer[], GPGGA_frame *data);	//parse a gpgga sentence
 ```
 
@@ -145,7 +146,7 @@ void parseGPGGA(const char buffer[], GPGGA_frame *data);	//parse a gpgga sentenc
 ParseCan contient plusieurs identifiants pour des message CAN et contient des fonctions pour convertir les `int` et les `float` en tableau de `unsigned char` et inversement pour envoyer ces donner sur le bus CAN
 
 liste des identifiants actuellement implémenter
-```
+```C
 #define MSG_GPRMC_LAT_LONG		0x40 //identifiant pour une tram avec la latitude et la longitude
 #define MSG_GPRMC_VIT_DATE		0x41 //identifiant pour une trame avec la vitesse et la date_order
 #define MSG_GPGGA_ALT_PREC		0x42 //identifiant pour une trame avec l'altitude et la precision
@@ -156,7 +157,7 @@ liste des identifiants actuellement implémenter
 ```
 
 fonction pour enregistrer un `int` dans un tableau de `unsigned char`
-```
+```C
 int ucharToInt(unsigned char buff[], int offset);
 //buff tableau de char
 // offset position du msb
@@ -170,14 +171,15 @@ float ucharToFloat(unsigned char buff[], int offset);
 ```
 
 fonction pour récupérer un `int` d'un tableau de `unsigned char`
-```
+```C
 void intToUChar(unsigned char buff[], int offset, int val);
 //buff tableau de char
 // offset position du msb
 // val entier à convertir
 ```
+
 fonction pour récupérer un `float` d'un tableau de `unsigned char`
-```
+```C
 void floatToUChar(unsigned char buff[], int offset, float val);
 //buff tableau de char
 // offset position du msb

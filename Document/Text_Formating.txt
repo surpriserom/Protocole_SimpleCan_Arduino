@@ -2,6 +2,7 @@ githud readme.md
 
 mise en forme d'un fichier readme sur github
 	https://help.github.com/articles/markdown-basics/
-
+	https://guides.github.com/features/mastering-markdown/
+	
 foramtage url
 	[text](url)
