@@ -1,0 +1,28 @@
+#######################################
+# Syntax Coloring Map For debug_lvc
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+GPS_PARSER	KEYWORD1 GPS_PARSER
+GPGGA_frame	KEYWORD1
+GPRMC_data	KEYWORD1
+GPRMC_frame	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+parseGPRMC		KEYWORD2
+parseGPGGA		KEYWORD2
+getNemaField	KEYWORD2
+convertGprmcFrame	KEYWORD2
+isGPRMC			KEYWORD2
+isGPGGA			KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+NMEALenght		LITERAL1
+GPS_PARSER_h	LITERAL1
+init			LITERAL1

@@ -1,0 +1,27 @@
+#######################################
+# Syntax Coloring Map For debug_lvc
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+ParseCan	KEYWORD1 ParseCan
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+ucharToInt		KEYWORD2
+ucharToFloat		KEYWORD2
+intToUChar	KEYWORD2
+floatToUChar	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+MSG_GPRMC_LAT_LONG		LITERAL1
+MSG_GPRMC_VIT_DATE		LITERAL1
+MSG_GPGGA_ALT_PREC		LITERAL1
+MSG_IMU_PHI_THETA_PSI		LITERAL1
+MSG_GYRO_X_Y_Z		LITERAL1
+MSG_test	LITERAL1
+init			LITERAL1
