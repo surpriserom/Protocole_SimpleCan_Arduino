@@ -103,11 +103,11 @@ void loop()
             Serial.println((char *)sentence);
             
           Serial.print("lat:");
-          Serial.print(	data.latitude);	 
+          Serial.print(	data.latitude,6);	 
           Serial.print(" long:");
-          Serial.println(data.longitude);
+          Serial.println(data.longitude,6);
           Serial.print("vitesse:");
-          Serial.print(	data.speed);	 
+          Serial.print(	data.speed,4);	 
           Serial.print(" date:");
           Serial.print(data.day);	 
           Serial.print("/");

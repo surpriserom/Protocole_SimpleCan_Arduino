@@ -79,7 +79,7 @@ void displayGPS()
 	Serial.print("mn ");
 	Serial.print(gpsFrame.latInd);
 	Serial.print(" : ");
-    Serial.print(gpsData.latitude);
+    Serial.print(gpsData.latitude,6);
     
     Serial.print(" | Long: ");
 	Serial.print(gpsFrame.longDeg);
@@ -88,7 +88,7 @@ void displayGPS()
 	Serial.print("mn ");
 	Serial.print(gpsFrame.longInd);
 	Serial.print(" : ");
-    Serial.println(gpsData.longitude);
+    Serial.println(gpsData.longitude,6);
   }
   else
   {

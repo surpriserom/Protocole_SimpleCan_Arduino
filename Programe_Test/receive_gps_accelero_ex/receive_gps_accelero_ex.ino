@@ -62,14 +62,14 @@ void loop()
           case MSG_GPRMC_LAT_LONG : 
                 Serial1.println("MSG_GPRMC_LAT_LONG");
                 Serial1.print("lat:");
-                Serial1.print(parser.ucharToFloat((unsigned char *)buf,0));
+                Serial1.print(parser.ucharToFloat((unsigned char *)buf,0),6);
                 Serial1.print(" long:");
-                Serial1.println(parser.ucharToFloat((unsigned char *)buf,4));
+                Serial1.println(parser.ucharToFloat((unsigned char *)buf,4),6);
             break;
           case MSG_GPRMC_VIT_DATE : 
                 Serial1.println("MSG_GPRMC_VIT_DATE");
                 Serial1.print("vitesse:");
-                Serial1.print(parser.ucharToFloat((unsigned char *)buf,0));
+                Serial1.print(parser.ucharToFloat((unsigned char *)buf,0),4);
                 Serial1.print("noeud, date:");
                 Serial1.print((unsigned char)buf[4],DEC);
                 Serial1.print("/");
